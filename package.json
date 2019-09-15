@@ -1,0 +1,23 @@
+{
+  "name": "triton-collection-generator",
+  "version": "1.0.0",
+  "description": "Generates collection files for Triton based on other plugin's config",
+  "main": "src/index.js",
+  "repository": "https://github.com/diogotcorreia/triton-collection-generator",
+  "author": "Diogo Correia",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/node": "^7.6.1",
+    "@babel/preset-env": "^7.6.0",
+    "nodemon": "^1.19.2"
+  },
+  "scripts": {
+    "start": "nodemon --watch src --exec babel-node src/index.js"
+  },
+  "dependencies": {
+    "properties": "^1.2.1"
+  }
+}
