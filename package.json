@@ -2,22 +2,39 @@
   "name": "triton-collection-generator",
   "version": "1.0.0",
   "description": "Generates collection files for Triton based on other plugin's config",
-  "main": "src/index.js",
   "repository": "https://github.com/diogotcorreia/triton-collection-generator",
   "author": "Diogo Correia",
   "license": "MIT",
   "private": false,
-  "devDependencies": {
-    "@babel/cli": "^7.6.0",
-    "@babel/core": "^7.6.0",
-    "@babel/node": "^7.6.1",
-    "@babel/preset-env": "^7.6.0",
-    "nodemon": "^1.19.2"
+  "dependencies": {
+    "flat": "^4.1.0",
+    "formik": "^1.5.8",
+    "js-file-download": "^0.4.8",
+    "properties": "^1.2.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-dropzone": "^10.1.8",
+    "react-scripts": "3.1.1"
   },
   "scripts": {
-    "start": "nodemon --watch src --exec babel-node src/index.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "dependencies": {
-    "properties": "^1.2.1"
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
