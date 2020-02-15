@@ -90,7 +90,7 @@ export const handleYamlContent = (prefix, regex, files) => {
           outputOriginal[key] = `[lang]${prefix + key}[/lang]`;
         } else {
           outputOriginal[key] = `[lang]${prefix + key}[args]${variables
-            .map((v) => `[arg]${v}[/arg]`)
+            .map((v) => v !== "" ? `[arg]${v}[/arg]` : ``)
             .join('')}[/args][/lang]`;
         }
       } else {
