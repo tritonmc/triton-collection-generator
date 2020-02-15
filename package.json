@@ -7,14 +7,14 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "flat": "^4.1.0",
-    "formik": "^1.5.8",
-    "js-file-download": "^0.4.8",
+    "flat": "^5.0.0",
+    "formik": "^2.1.4",
+    "js-file-download": "^0.4.9",
     "properties": "^1.2.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-dropzone": "^10.1.8",
-    "react-scripts": "3.1.1"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-dropzone": "^10.2.1",
+    "react-scripts": "3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
