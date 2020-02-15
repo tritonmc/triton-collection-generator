@@ -12,11 +12,21 @@ const onSubmit = (values, { setSubmitting }) => {
     var regex = new RegExp(values.regex, 'g');
     var files = await getAllFileContents(values.files);
     if (values.type === 'properties') {
-      let { output, outputOriginal } = handlePropertiesContent(values.prefix, regex, files);
+      let { output, outputOriginal } = handlePropertiesContent(
+        values.prefix,
+        regex,
+        files,
+        values.ignoreKeys.split('\n')
+      );
       fileDownload(JSON.stringify(output, null, 2), 'output.json');
       fileDownload(properties.stringify(outputOriginal), 'original.properties');
     } else if (values.type === 'yaml') {
-      let { output, outputOriginal } = handleYamlContent(values.prefix, regex, files);
+      let { output, outputOriginal } = handleYamlContent(
+        values.prefix,
+        regex,
+        files,
+        values.ignoreKeys.split('\n')
+      );
 
       fileDownload(JSON.stringify(output, null, 2), 'output.json');
       fileDownload(safeDump(unflatten(outputOriginal, { object: true })), 'original.yml');

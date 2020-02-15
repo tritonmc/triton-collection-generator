@@ -19,7 +19,7 @@ export const getAllFileContents = (files) =>
     resolve(result);
   });
 
-export const handlePropertiesContent = (prefix, regex, files) => {
+export const handlePropertiesContent = (prefix, regex, files, ignoreKeys) => {
   var output = [];
   var outputOriginal = {};
   Object.keys(files).forEach((fileName) => {
@@ -29,6 +29,10 @@ export const handlePropertiesContent = (prefix, regex, files) => {
       .join('.');
     var object = properties.parse(files[fileName]);
     Object.keys(object).forEach((key) => {
+      if (ignoreKeys.indexOf(key) !== -1) {
+        outputOriginal[key] = object[key];
+        return;
+      }
       var index = output.findIndex((v) => v.key === prefix + key);
       var { text, variables } = replaceVariables(object[key], regex);
       if (index === -1) {
@@ -61,7 +65,7 @@ const replaceVariables = (text, regex) => {
   return { text, variables };
 };
 
-export const handleYamlContent = (prefix, regex, files) => {
+export const handleYamlContent = (prefix, regex, files, ignoreKeys) => {
   var output = [];
   var outputOriginal = {};
   Object.keys(files).forEach((fileName) => {
@@ -72,7 +76,7 @@ export const handleYamlContent = (prefix, regex, files) => {
     var object = flatten(yaml.safeLoad(files[fileName]), { safe: true });
     console.log(object);
     Object.keys(object).forEach((key) => {
-      if (typeof object[key] !== 'string') {
+      if (typeof object[key] !== 'string' || ignoreKeys.indexOf(key) !== -1) {
         outputOriginal[key] = object[key];
         return;
       }
