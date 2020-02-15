@@ -21,7 +21,7 @@ const InputForm = ({ onSubmit }) => (
     {({ isSubmitting, values, setFieldValue }) => (
       <Form>
         <label>Prefix: </label>
-        <Field type='text' name='prefix' />
+        <Field type='text' name='prefix' placeholder='skywars.' />
         <br />
         <label>File type: </label>
         <Field component='select' name='type'>
@@ -29,8 +29,14 @@ const InputForm = ({ onSubmit }) => (
           <option value='yaml'>YAML</option>
         </Field>
         <br />
-        <label>Variable Regex: </label>
-        <Field type='text' name='regex' />
+        <label>
+          {`Variable Regex (`}
+          <a href='https://regexr.com/' target='_blank' rel='noopener noreferrer'>
+            help
+          </a>
+          {`): `}
+        </label>
+        <Field type='text' name='regex' placeholder='%\w+%' />
         <div>
           <label>Input files</label>
           <Dropzone
