@@ -1,6 +1,6 @@
 {
   "name": "triton-collection-generator",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Generates collection files for Triton based on other plugin's config",
   "repository": "https://github.com/diogotcorreia/triton-collection-generator",
   "author": "Diogo Correia",

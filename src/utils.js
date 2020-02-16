@@ -19,17 +19,27 @@ export const getAllFileContents = (files) =>
     resolve(result);
   });
 
-export const handlePropertiesContent = (prefix, regex, files, ignoreKeys) => {
+const handlePropertiesContent = (file) => {
+  return properties.parse(file);
+};
+
+const handleYamlContent = (file) => {
+  return flatten(yaml.safeLoad(file), { safe: false });
+};
+
+export const handleContent = (type, { prefix, regex, files, ignoreKeys }) => {
   var output = [];
   var outputOriginal = {};
   Object.keys(files).forEach((fileName) => {
-    var languageName = fileName
-      .split('.')
-      .slice(0, -1)
-      .join('.');
-    var object = properties.parse(files[fileName]);
+    const languageName = getLanguageName(fileName);
+    var object =
+      type === 0
+        ? handlePropertiesContent(files[fileName])
+        : type === 1
+        ? handleYamlContent(files[fileName])
+        : {};
     Object.keys(object).forEach((key) => {
-      if (ignoreKeys.indexOf(key) !== -1) {
+      if (typeof object[key] !== 'string' || !object[key].trim() || isIgnoredKey(key, ignoreKeys)) {
         outputOriginal[key] = object[key];
         return;
       }
@@ -57,6 +67,12 @@ export const handlePropertiesContent = (prefix, regex, files, ignoreKeys) => {
   });
   return { output, outputOriginal };
 };
+
+const getLanguageName = (fileName) =>
+  fileName
+    .split('.')
+    .slice(0, -1)
+    .join('.');
 
 const replaceVariables = (text, regex) => {
   var variables = text.match(regex);
@@ -65,42 +81,4 @@ const replaceVariables = (text, regex) => {
   return { text, variables };
 };
 
-export const handleYamlContent = (prefix, regex, files, ignoreKeys) => {
-  var output = [];
-  var outputOriginal = {};
-  Object.keys(files).forEach((fileName) => {
-    var languageName = fileName
-      .split('.')
-      .slice(0, -1)
-      .join('.');
-    var object = flatten(yaml.safeLoad(files[fileName]), { safe: true });
-    console.log(object);
-    Object.keys(object).forEach((key) => {
-      if (typeof object[key] !== 'string' || ignoreKeys.indexOf(key) !== -1) {
-        outputOriginal[key] = object[key];
-        return;
-      }
-      var index = output.findIndex((v) => v.key === prefix + key);
-      var { text, variables } = replaceVariables(object[key], regex);
-      if (index === -1) {
-        output.push({
-          key: prefix + key,
-          type: 'text',
-          languages: {
-            [languageName]: text,
-          },
-        });
-        if (!variables) {
-          outputOriginal[key] = `[lang]${prefix + key}[/lang]`;
-        } else {
-          outputOriginal[key] = `[lang]${prefix + key}[args]${variables
-            .map((v) => `[arg]${v}[/arg]`)
-            .join('')}[/args][/lang]`;
-        }
-      } else {
-        output[index].languages[languageName] = text;
-      }
-    });
-  });
-  return { output, outputOriginal };
-};
+const isIgnoredKey = (key, ignoreKeys) => ignoreKeys.some((v) => !!key.match(v));
