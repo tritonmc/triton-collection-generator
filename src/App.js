@@ -36,7 +36,17 @@ const onSubmit = (values, { setSubmitting }) => {
 const App = () => {
   return (
     <div className='App'>
+      <h1>Triton Collection Generator</h1>
+      <p>
+        As you can probably see due to the lack of styling, this is a tool aimed at developers and
+        wasn't built with user friendliness in mind.
+        <br />
+        <span style={{ color: 'red' }}>
+          Use at your own risk! The creator of this tool is in no way responsible for any damages.
+        </span>
+      </p>
       <InputForm onSubmit={onSubmit} />
+      <p>Copyright &copy; {new Date().getFullYear()} Diogo Correia (Rexcantor64)</p>
     </div>
   );
 };

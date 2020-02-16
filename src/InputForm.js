@@ -40,7 +40,7 @@ const InputForm = ({ onSubmit }) => (
         <br />
         <label>Ignore keys (add a line for each key): </label>
         <br />
-        <Field as='textarea' name='ignoreKeys' />
+        <Field as='textarea' name='ignoreKeys' rows={6} cols={50} />
         <div>
           <label>Input files</label>
           <Dropzone
