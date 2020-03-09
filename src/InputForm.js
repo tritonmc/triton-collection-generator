@@ -38,6 +38,12 @@ const InputForm = ({ onSubmit }) => (
         </label>
         <Field type='text' name='regex' placeholder='%\w+%' />
         <br />
+        <label>Output keys type: </label>
+        <Field component='select' name='output'>
+          <option value='tags'>[lang] tags</option>
+          <option value='placeholder'>placeholders</option>
+        </Field>
+        <br />
         <label>Ignore keys (add a line for each key): </label>
         <br />
         <Field as='textarea' name='ignoreKeys' rows={6} cols={50} />
