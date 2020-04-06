@@ -43,45 +43,47 @@ export const handleContent = (type, output_type, { prefix, regex, files, ignoreK
         outputOriginal[key] = object[key];
         return;
       }
-      var index = output.findIndex((v, i) => v.key === prefix + key);
+      var index = output.findIndex((v) => v.key === prefix + key);
       var { text, variables } = replaceVariables(object[key], regex);
       if (index === -1) {
         if (output_type === 'tags') {
           output.push({
-            key: prefix + key,
+            key: `${prefix}${key}`,
             type: 'text',
             languages: {
               [languageName]: text,
             },
           });
           if (!variables) {
-            outputOriginal[key] = `[lang]${prefix + key}[/lang]`;
+            outputOriginal[key] = `[lang]${prefix}${key}[/lang]`;
           } else {
-            outputOriginal[key] = `[lang]${prefix + key}[args]${variables
+            outputOriginal[key] = `[lang]${prefix}${key}[args]${variables
               .map((v) => `[arg]${v}[/arg]`)
               .join('')}[/args][/lang]`;
           }
         } else {
           if (!variables) {
             output.push({
-              key: prefix + key,
+              key: `${prefix}${key}`,
               type: 'text',
               languages: {
                 [languageName]: text,
               },
             });
-            outputOriginal[key] = `%triton_${prefix + key}%`;
+            outputOriginal[key] = `%triton_${prefix}${key}%`;
           } else {
-            variables.map((v, i) => output.push({
-              key: prefix + key + `.${i}`,
-              type: 'text',
-              languages: {
-                [languageName]: text,
-              },
-            }));
-            outputOriginal[key] = `%triton_${prefix + key}${variables
-              .map((v, i) => `.${i}% ${v} %triton_${prefix + key}.${i += 1}%`)
-              .join('')}`;
+            [...Array(variables.length + 1)].forEach((_, i) =>
+              output.push({
+                key: `${prefix}${key}.${i}`,
+                type: 'text',
+                languages: {
+                  [languageName]: text,
+                },
+              })
+            );
+            outputOriginal[key] = `${variables
+              .map((v, i) => `%triton_${prefix}${key}.${i}%${v}`)
+              .join('')}%triton_${prefix}${key}.${variables.length}%`;
           }
         }
       } else {
@@ -92,11 +94,7 @@ export const handleContent = (type, output_type, { prefix, regex, files, ignoreK
   return { output, outputOriginal };
 };
 
-const getLanguageName = (fileName) =>
-  fileName
-    .split('.')
-    .slice(0, -1)
-    .join('.');
+const getLanguageName = (fileName) => fileName.split('.').slice(0, -1).join('.');
 
 const replaceVariables = (text, regex) => {
   var variables = text.match(regex);
