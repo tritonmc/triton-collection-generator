@@ -20,11 +20,11 @@ const onSubmit = (values, { setSubmitting }) => {
       ignoreKeys,
     };
     if (values.type === 'properties') {
-      let { output, outputOriginal } = handleContent(0, options);
+      let { output, outputOriginal } = handleContent(0, values.output, options);
       fileDownload(JSON.stringify(output, null, 2), 'output.json');
       fileDownload(properties.stringify(outputOriginal), 'original.properties');
     } else if (values.type === 'yaml') {
-      let { output, outputOriginal } = handleContent(1, options);
+      let { output, outputOriginal } = handleContent(1, values.output, options);
 
       fileDownload(JSON.stringify(output, null, 2), 'output.json');
       fileDownload(safeDump(unflatten(outputOriginal, { object: false })), 'original.yml');

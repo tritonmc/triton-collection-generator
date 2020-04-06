@@ -27,7 +27,7 @@ const handleYamlContent = (file) => {
   return flatten(yaml.safeLoad(file), { safe: false });
 };
 
-export const handleContent = (type, { prefix, regex, files, ignoreKeys }) => {
+export const handleContent = (type, output_type, { prefix, regex, files, ignoreKeys }) => {
   var output = [];
   var outputOriginal = {};
   Object.keys(files).forEach((fileName) => {
@@ -46,19 +46,45 @@ export const handleContent = (type, { prefix, regex, files, ignoreKeys }) => {
       var index = output.findIndex((v) => v.key === prefix + key);
       var { text, variables } = replaceVariables(object[key], regex);
       if (index === -1) {
-        output.push({
-          key: prefix + key,
-          type: 'text',
-          languages: {
-            [languageName]: text,
-          },
-        });
-        if (!variables) {
-          outputOriginal[key] = `[lang]${prefix + key}[/lang]`;
+        if (output_type === 'tags') {
+          output.push({
+            key: `${prefix}${key}`,
+            type: 'text',
+            languages: {
+              [languageName]: text,
+            },
+          });
+          if (!variables) {
+            outputOriginal[key] = `[lang]${prefix}${key}[/lang]`;
+          } else {
+            outputOriginal[key] = `[lang]${prefix}${key}[args]${variables
+              .map((v) => `[arg]${v}[/arg]`)
+              .join('')}[/args][/lang]`;
+          }
         } else {
-          outputOriginal[key] = `[lang]${prefix + key}[args]${variables
-            .map((v) => `[arg]${v}[/arg]`)
-            .join('')}[/args][/lang]`;
+          if (!variables) {
+            output.push({
+              key: `${prefix}${key}`,
+              type: 'text',
+              languages: {
+                [languageName]: text,
+              },
+            });
+            outputOriginal[key] = `%triton_${prefix}${key}%`;
+          } else {
+            [...Array(variables.length + 1)].forEach((_, i) =>
+              output.push({
+                key: `${prefix}${key}.${i}`,
+                type: 'text',
+                languages: {
+                  [languageName]: text,
+                },
+              })
+            );
+            outputOriginal[key] = `${variables
+              .map((v, i) => `%triton_${prefix}${key}.${i}%${v}`)
+              .join('')}%triton_${prefix}${key}.${variables.length}%`;
+          }
         }
       } else {
         output[index].languages[languageName] = text;
@@ -68,11 +94,7 @@ export const handleContent = (type, { prefix, regex, files, ignoreKeys }) => {
   return { output, outputOriginal };
 };
 
-const getLanguageName = (fileName) =>
-  fileName
-    .split('.')
-    .slice(0, -1)
-    .join('.');
+const getLanguageName = (fileName) => fileName.split('.').slice(0, -1).join('.');
 
 const replaceVariables = (text, regex) => {
   var variables = text.match(regex);
