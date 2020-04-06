@@ -27,7 +27,7 @@ const handleYamlContent = (file) => {
   return flatten(yaml.safeLoad(file), { safe: false });
 };
 
-export const handleContent = (type, { prefix, regex, files, ignoreKeys }) => {
+export const handleContent = (type, output_type, { prefix, regex, files, ignoreKeys }) => {
   var output = [];
   var outputOriginal = {};
   Object.keys(files).forEach((fileName) => {
@@ -43,22 +43,46 @@ export const handleContent = (type, { prefix, regex, files, ignoreKeys }) => {
         outputOriginal[key] = object[key];
         return;
       }
-      var index = output.findIndex((v) => v.key === prefix + key);
+      var index = output.findIndex((v, i) => v.key === prefix + key);
       var { text, variables } = replaceVariables(object[key], regex);
       if (index === -1) {
-        output.push({
-          key: prefix + key,
-          type: 'text',
-          languages: {
-            [languageName]: text,
-          },
-        });
-        if (!variables) {
-          outputOriginal[key] = `[lang]${prefix + key}[/lang]`;
+        if (output_type === 'tags') {
+          output.push({
+            key: prefix + key,
+            type: 'text',
+            languages: {
+              [languageName]: text,
+            },
+          });
+          if (!variables) {
+            outputOriginal[key] = `[lang]${prefix + key}[/lang]`;
+          } else {
+            outputOriginal[key] = `[lang]${prefix + key}[args]${variables
+              .map((v) => `[arg]${v}[/arg]`)
+              .join('')}[/args][/lang]`;
+          }
         } else {
-          outputOriginal[key] = `[lang]${prefix + key}[args]${variables
-            .map((v) => `[arg]${v}[/arg]`)
-            .join('')}[/args][/lang]`;
+          if (!variables) {
+            output.push({
+              key: prefix + key,
+              type: 'text',
+              languages: {
+                [languageName]: text,
+              },
+            });
+            outputOriginal[key] = `%triton_${prefix + key}%`;
+          } else {
+            variables.map((v, i) => output.push({
+              key: prefix + key + `.${i}`,
+              type: 'text',
+              languages: {
+                [languageName]: text,
+              },
+            }));
+            outputOriginal[key] = `%triton_${prefix + key}${variables
+              .map((v, i) => `.${i}% ${v} %triton_${prefix + key}.${i += 1}%`)
+              .join('')}`;
+          }
         }
       } else {
         output[index].languages[languageName] = text;
