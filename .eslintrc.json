@@ -1,0 +1,12 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "extends": ["eslint:recommended", "plugin:react/recommended", "airbnb", "adjunct"],
+  "rules": {
+    "unicorn/filename-case": "off",
+    "array-func/prefer-array-from": "off"
+  }
+}

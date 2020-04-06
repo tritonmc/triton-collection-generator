@@ -1,29 +1,18 @@
 {
   "name": "triton-collection-generator",
   "version": "1.1.0",
-  "description": "Generates collection files for Triton based on other plugin's config",
-  "repository": "https://github.com/diogotcorreia/triton-collection-generator",
   "author": "Diogo Correia",
   "license": "MIT",
   "private": false,
-  "dependencies": {
-    "flat": "^5.0.0",
-    "formik": "^2.1.4",
-    "js-file-download": "^0.4.9",
-    "properties": "^1.2.1",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-dropzone": "^10.2.1",
-    "react-scripts": "3.4.0"
-  },
+  "description": "Generates collection files for Triton based on other plugin's config",
+  "repository": "https://github.com/diogotcorreia/triton-collection-generator",
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "eject": "react-scripts eject",
+    "eslint": "eslint --color *.{html,js,json,jsx,md} src/*.{html,js,json,jsx,md}",
+    "eslint:fix": "npm run eslint -- --fix",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
   },
   "browserslist": {
     "production": [
@@ -36,5 +25,43 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "dependencies": {
+    "flat": "^5.0.0",
+    "formik": "^2.1.4",
+    "js-file-download": "^0.4.9",
+    "js-yaml": "^3.13.1",
+    "properties": "^1.2.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.13.1",
+    "react-dropzone": "^10.2.1",
+    "react-scripts": "3.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-adjunct": "^4.0.2",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-array-func": "^3.1.4",
+    "eslint-plugin-eslint-comments": "^3.1.2",
+    "eslint-plugin-html": "^6.0.1",
+    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-jest-async": "^1.0.3",
+    "eslint-plugin-json-format": "^2.0.1",
+    "eslint-plugin-markdown": "^1.0.2",
+    "eslint-plugin-no-constructor-bind": "^1.2.8",
+    "eslint-plugin-no-use-extend-native": "^0.4.1",
+    "eslint-plugin-optimize-regex": "^1.1.7",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-simple-import-sort": "^5.0.2",
+    "eslint-plugin-sonarjs": "^0.5.0",
+    "eslint-plugin-switch-case": "^1.1.2",
+    "eslint-plugin-unicorn": "^18.0.1",
+    "prettier": "^2.0.4"
   }
 }
