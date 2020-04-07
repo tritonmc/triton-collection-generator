@@ -1,13 +1,16 @@
-import './App.css';
-
+import { Container } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { unflatten } from 'flat';
 import fileDownload from 'js-file-download';
 import { safeDump } from 'js-yaml';
 import properties from 'properties';
 import React from 'react';
 
+import { getAllFileContents, handleContent } from '../lib/converter';
+import DevelopmentWarning from './boilerplate/DevelopmentWarning';
+import Footer from './boilerplate/Footer';
+import Navbar from './boilerplate/Navbar';
 import InputForm from './InputForm';
-import { getAllFileContents, handleContent } from './utils';
 
 const onSubmit = (values, { setSubmitting }) => {
   setTimeout(async () => {
@@ -35,23 +38,24 @@ const onSubmit = (values, { setSubmitting }) => {
   }, 400);
 };
 
-const App = () => (
-  <div className='App'>
-    <h1>Triton Collection Generator</h1>
-    <p>
-      As you can probably see due to the lack of styling, this is a tool aimed at developers and
-      wasn&apos;t built with user friendliness in mind.
-      <br />
-      <span style={{ color: 'red' }}>
-        Use at your own risk! The creator of this tool is in no way responsible for any damages.
-      </span>
-    </p>
-    <InputForm onSubmit={onSubmit} />
-    <p>
-      Copyright &copy;
-      {new Date().getFullYear()} Diogo Correia (Rexcantor64)
-    </p>
-  </div>
-);
+const useStyles = makeStyles((theme) => ({
+  container: {
+    marginTop: theme.spacing(3),
+  },
+}));
+
+const App = () => {
+  const classes = useStyles();
+  return (
+    <div>
+      <Navbar />
+      <Container fixed className={classes.container}>
+        <DevelopmentWarning />
+        <InputForm onSubmit={onSubmit} />
+        <Footer />
+      </Container>
+    </div>
+  );
+};
 
 export default App;

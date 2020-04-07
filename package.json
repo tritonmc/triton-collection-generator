@@ -30,6 +30,8 @@
     "extends": "react-app"
   },
   "dependencies": {
+    "@material-ui/core": "^4.9.9",
+    "@material-ui/lab": "^4.0.0-alpha.48",
     "flat": "^5.0.0",
     "formik": "^2.1.4",
     "js-file-download": "^0.4.9",
