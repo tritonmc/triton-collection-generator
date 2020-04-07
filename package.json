@@ -1,6 +1,6 @@
 {
   "name": "triton-collection-generator",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "author": "Diogo Correia",
   "license": "MIT",
   "private": false,
@@ -31,23 +31,25 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.9.9",
+    "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.48",
     "flat": "^5.0.0",
     "formik": "^2.1.4",
-    "js-file-download": "^0.4.9",
+    "js-file-download": "^0.4.11",
     "js-yaml": "^3.13.1",
+    "material-ui-dropzone": "^2.4.9",
+    "prop-types": "^15.7.2",
     "properties": "^1.2.1",
-    "react": "^16.12.0",
+    "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-dropzone": "^10.2.1",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.1"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-adjunct": "^4.0.2",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-array-func": "^3.1.4",
+    "eslint-plugin-array-func": "^3.1.5",
     "eslint-plugin-eslint-comments": "^3.1.2",
     "eslint-plugin-html": "^6.0.1",
     "eslint-plugin-jest": "^23.8.2",

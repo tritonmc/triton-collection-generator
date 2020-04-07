@@ -15,7 +15,9 @@ const Navbar = () => {
   return (
     <AppBar position='static'>
       <Toolbar>
-        <Typography variant='h6'>Triton Collection Generator</Typography>
+        <Typography variant='h6' component='h1'>
+          Triton Collection Generator
+        </Typography>
         <div className={classes.grow} />
         <IconButton
           component='a'
