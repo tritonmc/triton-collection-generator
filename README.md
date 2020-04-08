@@ -15,6 +15,11 @@
 This tool aims to ease the setup process for [Triton](https://triton.rexcantor64.com), a Minecraft plugin that translates your server.  
 The tool itself is available on [https://triton-generator.rexcantor64.com/](https://triton-generator.rexcantor64.com/)
 
+## Using the generator
+
+The best way to learn how to the use generator is to look at the [translation collection repository](https://github.com/diogotcorreia/triton-translation-collection).
+There you can see real examples of plugins being translated and their settings.
+
 ## Contributing
 
 1. Clone the repository using HTTP or SSH.
