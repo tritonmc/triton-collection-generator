@@ -4,7 +4,7 @@ export const convertOriginalMessage = (key, variables) => {
 };
 
 export const getTranslations = ({ text, key, variables }) => {
-  let i = 1;
+  let i = 0;
   let result = text;
   if (variables)
     variables.forEach((v) => {
