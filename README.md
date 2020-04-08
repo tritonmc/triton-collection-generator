@@ -25,7 +25,7 @@ There you can see real examples of plugins being translated and their settings.
 1. Clone the repository using HTTP or SSH.
 2. Install dependencies using `yarn install`.
 3. Start the development server using `yarn start`.
-4. After coding your changes, run `yarn lint` and fix any issues that may arise. **DO NOT** push your changes with linting issues.
+4. After coding your changes, run `yarn eslint` and fix (`yarn eslint:fix`) any issues that may arise. **DO NOT** push your changes with linting issues.
 5. Submit a PR and wait for approval.
 6. (Optional) Add your name to the list of contributors below.
 7. Congrats, you've just contributed to this tool! 🎉
