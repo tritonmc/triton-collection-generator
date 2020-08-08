@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const acceptedFiles = ['.properties', '.yml', '.yaml', '.json'];
-const dropzoneText = `Drag and drop a file here or click here. Accepted formats: ${acceptedFiles.join(
+const dropzoneText = `Drag and drop your files here or click here. File names will be used as language IDs. Accepted formats: ${acceptedFiles.join(
   ', '
 )}`;
 
