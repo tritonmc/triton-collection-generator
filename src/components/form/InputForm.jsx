@@ -31,6 +31,7 @@ const InputForm = () => {
   const [variableRegex, setVariableRegex] = useState('');
   const [outputType, setOutputType] = useState('triton_placeholders');
   const [ignoredKeys, setIgnoredKeys] = useState('');
+  const [levelDelimiter, setLevelDelimiter] = useState('.');
   const [files, setFiles] = useState([]);
 
   return (
@@ -61,6 +62,15 @@ const InputForm = () => {
         onChange={handleFieldChange(setOutputType)}
       />
       <TextField
+        label='Level Delimiter'
+        value={levelDelimiter}
+        onChange={handleFieldChange(setLevelDelimiter)}
+        helperText='(Advanced) The delimiter used when flatting the path for a translation key.'
+        fullWidth
+        margin='normal'
+        variant='outlined'
+      />
+      <TextField
         multiline
         label='Ignored keys'
         value={ignoredKeys}
@@ -76,6 +86,7 @@ const InputForm = () => {
         variableRegex={variableRegex}
         outputType={outputType}
         ignoredKeys={ignoredKeys}
+        levelDelimiter={levelDelimiter}
         files={files}
       />
     </form>

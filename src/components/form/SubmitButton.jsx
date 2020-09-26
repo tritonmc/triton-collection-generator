@@ -5,7 +5,14 @@ import React from 'react';
 import { handleConversion } from '../../lib/converter';
 import { downloadFiles, getAllFileContents } from '../../lib/files';
 
-const SubmitButton = ({ prefix, variableRegex, outputType, ignoredKeys, files }) => {
+const SubmitButton = ({
+  prefix,
+  variableRegex,
+  outputType,
+  ignoredKeys,
+  levelDelimiter,
+  files,
+}) => {
   const onSubmit = async (event) => {
     event.preventDefault();
     const fileContents = await getAllFileContents(files);
@@ -14,6 +21,7 @@ const SubmitButton = ({ prefix, variableRegex, outputType, ignoredKeys, files })
       variableRegex,
       outputType,
       ignoredKeys,
+      levelDelimiter,
       files: fileContents,
     });
     downloadFiles(result);

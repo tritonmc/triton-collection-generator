@@ -2,27 +2,34 @@ import { getFormatManager, json } from './formats';
 import { getOutputTypeManager } from './outputType';
 
 class Converter {
-  constructor({ prefix, variableRegex, outputType, ignoredKeys, files }) {
+  constructor({ prefix, variableRegex, outputType, ignoredKeys, levelDelimiter, files }) {
     this.prefix = prefix;
     this.variableRegex = variableRegex;
     this.outputType = outputType;
     this.ignoredKeys = ignoredKeys;
+    this.levelDelimiter = levelDelimiter;
     this.files = files;
     this.output = [];
     this.outputOriginal = {};
   }
 
   convert() {
-    this.files.forEach((file) => this.convertFile(file));
+    this.files.forEach((file) => this.convertFile(file, this.outputOriginal));
   }
 
-  convertFile({ language, content }) {
+  convertFile({ language, content }, target, fullPath = []) {
     Object.entries(content).forEach(([key, value]) => {
-      if (typeof value !== 'string' || !value.trim() || this.isIgnoredKey(key)) {
-        if (this.outputOriginal[key] === undefined) this.outputOriginal[key] = value;
+      if (typeof value === 'object') {
+        if (target[key] === undefined) target[key] = Array.isArray(value) ? [] : {};
+        this.convertFile({ language, content: value }, target[key], [...fullPath, key]);
         return;
       }
-      const fullKey = `${this.prefix}${key}`;
+      const keyFullPath = [...fullPath, key].join(this.levelDelimiter);
+      if (typeof value !== 'string' || !value.trim() || this.isIgnoredKey(keyFullPath)) {
+        if (target[key] === undefined) target[key] = value;
+        return;
+      }
+      const fullKey = `${this.prefix}${keyFullPath}`;
       const outputTypeManager = getOutputTypeManager(this.outputType);
       const variables = value.match(this.variableRegex);
       const translations = outputTypeManager.getTranslations({
@@ -32,8 +39,8 @@ class Converter {
         variables,
       });
       translations.forEach((translation) => this.addTranslation(language, translation));
-      if (this.outputOriginal[key] === undefined)
-        this.outputOriginal[key] = outputTypeManager.convertOriginalMessage(fullKey, variables);
+      if (target[key] === undefined)
+        target[key] = outputTypeManager.convertOriginalMessage(fullKey, variables);
     });
   }
 
@@ -77,7 +84,14 @@ const mapFiles = (files) => (fileName) => ({
   content: getFormatManager(fileName).fromFileContent(files[fileName]),
 });
 
-export const handleConversion = ({ prefix, variableRegex, outputType, ignoredKeys, files }) => {
+export const handleConversion = ({
+  prefix = '',
+  variableRegex,
+  outputType = 'triton_placeholders',
+  ignoredKeys = '',
+  levelDelimiter = '.',
+  files = {},
+}) => {
   const converter = new Converter({
     prefix,
     variableRegex: variableRegex ? new RegExp(variableRegex, 'g') : /.^/g,
@@ -86,6 +100,7 @@ export const handleConversion = ({ prefix, variableRegex, outputType, ignoredKey
       .split('\n')
       .filter((value) => !!value)
       .map((value) => new RegExp(`^${value}$`)),
+    levelDelimiter,
     files: Object.keys(files).map(mapFiles(files)),
   });
   converter.convert();

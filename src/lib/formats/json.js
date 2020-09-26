@@ -1,8 +1,5 @@
-import flatten, { unflatten } from 'flat';
+export const fromFileContent = (content) => JSON.parse(content);
 
-export const fromFileContent = (content) => flatten(JSON.parse(content), { safe: false });
-
-export const toFileContent = (content) =>
-  JSON.stringify(unflatten(content, { object: false }), null, 2);
+export const toFileContent = (content) => JSON.stringify(content, null, 2);
 
 export const originalFileName = 'original.json';

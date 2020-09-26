@@ -1,8 +1,7 @@
-import flatten, { unflatten } from 'flat';
 import { safeDump, safeLoad } from 'js-yaml';
 
-export const fromFileContent = (content) => flatten(safeLoad(content), { safe: false });
+export const fromFileContent = (content) => safeLoad(content);
 
-export const toFileContent = (content) => safeDump(unflatten(content, { object: false }));
+export const toFileContent = (content) => safeDump(content);
 
 export const originalFileName = 'original.yml';
