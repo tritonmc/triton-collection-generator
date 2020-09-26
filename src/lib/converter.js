@@ -19,7 +19,7 @@ class Converter {
 
   convertFile({ language, content }, target, fullPath = []) {
     Object.entries(content).forEach(([key, value]) => {
-      if (typeof value === 'object') {
+      if (typeof value === 'object' && value !== null) {
         if (target[key] === undefined) target[key] = Array.isArray(value) ? [] : {};
         this.convertFile({ language, content: value }, target[key], [...fullPath, key]);
         return;
