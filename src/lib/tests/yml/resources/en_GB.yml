@@ -1,0 +1,27 @@
+topLevelKey1: Orci varius natoque penatibus et magnis dis parturient montes, nascetur.
+topLevelKey2: Etiam a enim sollicitudin, fringilla ante at, tincidunt metus. Sed.
+topLevelKey3: '%1 Curabitur nec mattis sem. Duis sit amet ante nec odio.'
+flattened.key.1: Suspendisse convallis dui ligula, sed fringilla mauris hendrerit tincidunt. Vestibulum. %1
+flattened.key.2: Pellentesque habitant %1 morbi tristique senectus et netus et malesuada fames.
+flattened.key.3: '%1Nulla non nulla malesuada, pulvinar sem sed, rhoncus odio. Suspendisse.%2'
+section1:
+  field1: '%1 Fusce posuere, purus vestibulum %2 consequat gravida, nisi libero aliquam purus. %3'
+  field2: Vestibulum nulla magna, egestas %1 lacus non, vulputate %2 nisl.
+  subsection1:
+    field1: Pellentesque ac lorem suscipit, pretium neque efficitur, consectetur felis.
+      Suspendisse.
+    field2: Aliquam tempor ante %1, non sollicitudin lacus ornare vitae. Pellentesque.
+section2:
+  subsection1:
+    subsubsection1:
+      field1: Donec %1 tempor velit %2 id eros sollicitudin, dictum %3 finibus mauris %4 accumsan.
+  notAString: false
+  array1:
+    - Pellentesque lobortis odio tempor finibus maximus. Cras malesuada porta ante.
+    -
+    - Maecenas sit amet %1 nisl massa. In elementum aliquet nunc sit.
+  array2:
+    - Do
+    - Not
+    - Replace
+    - Me

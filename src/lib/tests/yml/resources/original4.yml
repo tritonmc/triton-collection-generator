@@ -1,0 +1,26 @@
+topLevelKey1: '%triton_topLevelKey1%'
+topLevelKey2: '%triton_topLevelKey2%'
+topLevelKey3: '%triton_topLevelKey3%'
+flattened.key.1: '%triton_flattened.key.1%'
+flattened.key.2: '%triton_flattened.key.2%'
+flattened.key.3: '%triton_flattened.key.3%'
+section1:
+  field1: '%triton_section1.field1%'
+  field2: '%triton_section1.field2%'
+  subsection1:
+    field1: '%triton_section1.subsection1.field1%'
+    field2: '%triton_section1.subsection1.field2%'
+section2:
+  subsection1:
+    subsubsection1:
+      field1: '%triton_section2.subsection1.subsubsection1.field1%'
+  notAString: false
+  array1:
+    - '%triton_section2.array1.0%'
+    - null
+    - '%triton_section2.array1.2%'
+  array2:
+    - '%triton_section2.array2.0%'
+    - '%triton_section2.array2.1%'
+    - '%triton_section2.array2.2%'
+    - '%triton_section2.array2.3%'

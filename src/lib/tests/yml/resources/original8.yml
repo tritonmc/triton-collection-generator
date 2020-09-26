@@ -1,0 +1,31 @@
+topLevelKey1: '[lang]customPrefix_topLevelKey1[/lang]'
+topLevelKey2: '[lang]customPrefix_topLevelKey2[/lang]'
+topLevelKey3: '[lang]customPrefix_topLevelKey3[args][arg]%1[/arg][/args][/lang]'
+flattened.key.1: '[lang]customPrefix_flattened.key.1[args][arg]%1[/arg][/args][/lang]'
+flattened.key.2: '[lang]customPrefix_flattened.key.2[args][arg]%1[/arg][/args][/lang]'
+flattened.key.3: >-
+  [lang]customPrefix_flattened.key.3[args][arg]%1[/arg][arg]%2[/arg][/args][/lang]
+section1:
+  field1: >-
+    [lang]customPrefix_section1_field1[args][arg]%1[/arg][arg]%2[/arg][arg]%3[/arg][/args][/lang]
+  field2: >-
+    [lang]customPrefix_section1_field2[args][arg]%1[/arg][arg]%2[/arg][/args][/lang]
+  subsection1:
+    field1: '[lang]customPrefix_section1_subsection1_field1[/lang]'
+    field2: >-
+      [lang]customPrefix_section1_subsection1_field2[args][arg]%1[/arg][/args][/lang]
+section2:
+  subsection1:
+    subsubsection1:
+      field1: >-
+        [lang]customPrefix_section2_subsection1_subsubsection1_field1[args][arg]%1[/arg][arg]%2[/arg][arg]%3[/arg][arg]%4[/arg][/args][/lang]
+  notAString: false
+  array1:
+    - '[lang]customPrefix_section2_array1_0[/lang]'
+    - null
+    - '[lang]customPrefix_section2_array1_2[args][arg]%1[/arg][/args][/lang]'
+  array2:
+    - Do
+    - Not
+    - Replace
+    - Me

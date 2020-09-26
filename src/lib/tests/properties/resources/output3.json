@@ -1,0 +1,138 @@
+[
+  {
+    "key": "topLevelKey1",
+    "type": "text",
+    "languages": {
+      "en_GB": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur.",
+      "pt_PT": "Curabitur eu urna vel lorem finibus ornare vulputate nec tellus."
+    }
+  },
+  {
+    "key": "topLevelKey2",
+    "type": "text",
+    "languages": {
+      "en_GB": "Etiam a enim sollicitudin, fringilla ante at, tincidunt metus. Sed.",
+      "pt_PT": "Vestibulum finibus, magna at consectetur pretium, tellus ante iaculis nibh."
+    }
+  },
+  {
+    "key": "topLevelKey3",
+    "type": "text",
+    "languages": {
+      "en_GB": "'%1 Curabitur nec mattis sem. Duis sit amet ante nec odio.'",
+      "pt_PT": "'%1 Aenean facilisis arcu sed mollis posuere. Pellentesque velit nulla, laoreet.'"
+    }
+  },
+  {
+    "key": "flattened.key.1",
+    "type": "text",
+    "languages": {
+      "en_GB": "Suspendisse convallis dui ligula, sed fringilla mauris hendrerit tincidunt. Vestibulum. %1",
+      "pt_PT": "Cras volutpat molestie ligula, id accumsan arcu mattis non. Nullam. %1"
+    }
+  },
+  {
+    "key": "flattened.key.2",
+    "type": "text",
+    "languages": {
+      "en_GB": "Pellentesque habitant %1 morbi tristique senectus et netus et malesuada fames.",
+      "pt_PT": "Morbi fringilla sem blandit, %1 tempus est congue, varius augue. Nunc."
+    }
+  },
+  {
+    "key": "flattened.key.3",
+    "type": "text",
+    "languages": {
+      "en_GB": "'%1Nulla non nulla malesuada, pulvinar sem sed, rhoncus odio. Suspendisse.%2'",
+      "pt_PT": "'%1Pellentesque malesuada vel diam sagittis bibendum. Maecenas ultricies ac dui.%2'"
+    }
+  },
+  {
+    "key": "section1.field1",
+    "type": "text",
+    "languages": {
+      "en_GB": "'%1 Fusce posuere, purus vestibulum %2 consequat gravida, nisi libero aliquam purus. %3'",
+      "pt_PT": "'%1 Vivamus mollis imperdiet neque eu suscipit. %2 Lorem ipsum dolor sit. %3'"
+    }
+  },
+  {
+    "key": "section1.field2",
+    "type": "text",
+    "languages": {
+      "en_GB": "Vestibulum nulla magna, egestas %1 lacus non, vulputate %2 nisl.",
+      "pt_PT": "Mauris ultricies velit ex, %1 quis semper purus suscipit sed. %2 Quisque."
+    }
+  },
+  {
+    "key": "section1.subsection1.field1",
+    "type": "text",
+    "languages": {
+      "en_GB": "Pellentesque ac lorem suscipit, pretium neque efficitur, consectetur felis. Suspendisse.",
+      "pt_PT": "Aliquam mollis volutpat tellus, vel sagittis lorem venenatis at. Morbi."
+    }
+  },
+  {
+    "key": "section1.subsection1.field2",
+    "type": "text",
+    "languages": {
+      "en_GB": "Aliquam tempor ante %1, non sollicitudin lacus ornare vitae. Pellentesque.",
+      "pt_PT": "In faucibus a %1 nunc ac ornare. Phasellus accumsan orci a."
+    }
+  },
+  {
+    "key": "section2.subsection1.subsubsection1.field1",
+    "type": "text",
+    "languages": {
+      "en_GB": "Donec %1 tempor velit %2 id eros sollicitudin, dictum %3 finibus mauris %4 accumsan.",
+      "pt_PT": "Sed risus %1 ex, malesuada %2 eget sollicitudin %3 sollicitudin, eleifend %4 elementum metus."
+    }
+  },
+  {
+    "key": "section2.array1.0",
+    "type": "text",
+    "languages": {
+      "en_GB": "Pellentesque lobortis odio tempor finibus maximus. Cras malesuada porta ante.",
+      "pt_PT": "Nam sit amet mauris sit amet felis consectetur posuere luctus."
+    }
+  },
+  {
+    "key": "section2.array1.2",
+    "type": "text",
+    "languages": {
+      "en_GB": "Maecenas sit amet %1 nisl massa. In elementum aliquet nunc sit.",
+      "pt_PT": "Vestibulum rutrum, %1 ante eu viverra ullamcorper, ipsum magna aliquet elit."
+    }
+  },
+  {
+    "key": "section2.array2.0",
+    "type": "text",
+    "languages": {
+      "en_GB": "Do",
+      "pt_PT": "Do"
+    }
+  },
+  {
+    "key": "section2.array2.1",
+    "type": "text",
+    "languages": {
+      "en_GB": "Not",
+      "pt_PT": "Not"
+    }
+  },
+  {
+    "key": "section2.array2.2",
+    "type": "text",
+    "languages": {
+      "en_GB": "Replace",
+      "pt_PT": "Replace"
+    }
+  },
+  {
+    "key": "section2.array2.3",
+    "type": "text",
+    "languages": {
+      "en_GB": "Me",
+      "pt_PT": "Me"
+    }
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "topLevelKey1": "Curabitur eu urna vel lorem finibus ornare vulputate nec tellus.",
+  "topLevelKey2": "Vestibulum finibus, magna at consectetur pretium, tellus ante iaculis nibh.",
+  "topLevelKey3": "%1 Aenean facilisis arcu sed mollis posuere. Pellentesque velit nulla, laoreet.",
+  "flattened.key.1": "Cras volutpat molestie ligula, id accumsan arcu mattis non. Nullam. %1",
+  "flattened.key.2": "Morbi fringilla sem blandit, %1 tempus est congue, varius augue. Nunc.",
+  "flattened.key.3": "%1Pellentesque malesuada vel diam sagittis bibendum. Maecenas ultricies ac dui.%2",
+  "section1": {
+    "field1": "%1 Vivamus mollis imperdiet neque eu suscipit. %2 Lorem ipsum dolor sit. %3",
+    "field2": "Mauris ultricies velit ex, %1 quis semper purus suscipit sed. %2 Quisque.",
+    "subsection1": {
+      "field1": "Aliquam mollis volutpat tellus, vel sagittis lorem venenatis at. Morbi.",
+      "field2": "In faucibus a %1 nunc ac ornare. Phasellus accumsan orci a."
+    }
+  },
+  "section2": {
+    "subsection1": {
+      "subsubsection1": {
+        "field1": "Sed risus %1 ex, malesuada %2 eget sollicitudin %3 sollicitudin, eleifend %4 elementum metus."
+      }
+    },
+    "notAString": false,
+    "array1": [
+      "Nam sit amet mauris sit amet felis consectetur posuere luctus.",
+      null,
+      "Vestibulum rutrum, %1 ante eu viverra ullamcorper, ipsum magna aliquet elit."
+    ],
+    "array2": ["Do", "Not", "Replace", "Me"]
+  }
+}

@@ -1,0 +1,26 @@
+topLevelKey1: '[lang]customPrefix.topLevelKey1[/lang]'
+topLevelKey2: '[lang]customPrefix.topLevelKey2[/lang]'
+topLevelKey3: '[lang]customPrefix.topLevelKey3[/lang]'
+flattened.key.1: '[lang]customPrefix.flattened.key.1[/lang]'
+flattened.key.2: '[lang]customPrefix.flattened.key.2[/lang]'
+flattened.key.3: '[lang]customPrefix.flattened.key.3[/lang]'
+section1:
+  field1: '[lang]customPrefix.section1.field1[/lang]'
+  field2: '[lang]customPrefix.section1.field2[/lang]'
+  subsection1:
+    field1: '[lang]customPrefix.section1.subsection1.field1[/lang]'
+    field2: '[lang]customPrefix.section1.subsection1.field2[/lang]'
+section2:
+  subsection1:
+    subsubsection1:
+      field1: '[lang]customPrefix.section2.subsection1.subsubsection1.field1[/lang]'
+  notAString: false
+  array1:
+    - '[lang]customPrefix.section2.array1.0[/lang]'
+    - null
+    - '[lang]customPrefix.section2.array1.2[/lang]'
+  array2:
+    - '[lang]customPrefix.section2.array2.0[/lang]'
+    - '[lang]customPrefix.section2.array2.1[/lang]'
+    - '[lang]customPrefix.section2.array2.2[/lang]'
+    - '[lang]customPrefix.section2.array2.3[/lang]'

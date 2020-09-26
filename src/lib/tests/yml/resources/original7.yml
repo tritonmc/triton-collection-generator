@@ -1,0 +1,26 @@
+topLevelKey1: '[lang]topLevelKey1[/lang]'
+topLevelKey2: '[lang]topLevelKey2[/lang]'
+topLevelKey3: '[lang]topLevelKey3[/lang]'
+flattened.key.1: '[lang]flattened.key.1[/lang]'
+flattened.key.2: '[lang]flattened.key.2[/lang]'
+flattened.key.3: '[lang]flattened.key.3[/lang]'
+section1:
+  field1: '[lang]section1_field1[/lang]'
+  field2: '[lang]section1_field2[/lang]'
+  subsection1:
+    field1: '[lang]section1_subsection1_field1[/lang]'
+    field2: '[lang]section1_subsection1_field2[/lang]'
+section2:
+  subsection1:
+    subsubsection1:
+      field1: '[lang]section2_subsection1_subsubsection1_field1[/lang]'
+  notAString: false
+  array1:
+    - '[lang]section2_array1_0[/lang]'
+    - null
+    - '[lang]section2_array1_2[/lang]'
+  array2:
+    - '[lang]section2_array2_0[/lang]'
+    - '[lang]section2_array2_1[/lang]'
+    - '[lang]section2_array2_2[/lang]'
+    - '[lang]section2_array2_3[/lang]'

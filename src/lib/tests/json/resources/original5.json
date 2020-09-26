@@ -1,0 +1,35 @@
+{
+  "topLevelKey1": "%triton_topLevelKey1%",
+  "topLevelKey2": "%triton_topLevelKey2%",
+  "topLevelKey3": "%triton_topLevelKey3.0%%1%triton_topLevelKey3.1%",
+  "flattened.key.1": "%triton_flattened.key.1.0%%1%triton_flattened.key.1.1%",
+  "flattened.key.2": "%triton_flattened.key.2.0%%1%triton_flattened.key.2.1%",
+  "flattened.key.3": "%triton_flattened.key.3.0%%1%triton_flattened.key.3.1%%2%triton_flattened.key.3.2%",
+  "section1": {
+    "field1": "%triton_section1.field1.0%%1%triton_section1.field1.1%%2%triton_section1.field1.2%%3%triton_section1.field1.3%",
+    "field2": "%triton_section1.field2.0%%1%triton_section1.field2.1%%2%triton_section1.field2.2%",
+    "subsection1": {
+      "field1": "%triton_section1.subsection1.field1%",
+      "field2": "%triton_section1.subsection1.field2.0%%1%triton_section1.subsection1.field2.1%"
+    }
+  },
+  "section2": {
+    "subsection1": {
+      "subsubsection1": {
+        "field1": "%triton_section2.subsection1.subsubsection1.field1.0%%1%triton_section2.subsection1.subsubsection1.field1.1%%2%triton_section2.subsection1.subsubsection1.field1.2%%3%triton_section2.subsection1.subsubsection1.field1.3%%4%triton_section2.subsection1.subsubsection1.field1.4%"
+      }
+    },
+    "notAString": false,
+    "array1": [
+      "%triton_section2.array1.0%",
+      null,
+      "%triton_section2.array1.2.0%%1%triton_section2.array1.2.1%"
+    ],
+    "array2": [
+      "%triton_section2.array2.0%",
+      "%triton_section2.array2.1%",
+      "%triton_section2.array2.2%",
+      "%triton_section2.array2.3%"
+    ]
+  }
+}
