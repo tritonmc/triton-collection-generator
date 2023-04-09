@@ -2,10 +2,23 @@ import { getFormatManager, json } from './formats';
 import { getOutputTypeManager } from './outputType';
 
 class Converter {
-  constructor({ prefix, variableRegex, outputType, ignoredKeys, levelDelimiter, files }) {
+  constructor({
+    prefix,
+    variableRegex,
+    outputType,
+    langSyntax,
+    argSyntax,
+    argsSyntax,
+    ignoredKeys,
+    levelDelimiter,
+    files,
+  }) {
     this.prefix = prefix;
     this.variableRegex = variableRegex;
     this.outputType = outputType;
+    this.langSyntax = langSyntax;
+    this.argSyntax = argSyntax;
+    this.argsSyntax = argsSyntax;
     this.ignoredKeys = ignoredKeys;
     this.levelDelimiter = levelDelimiter;
     this.files = files;
@@ -39,8 +52,15 @@ class Converter {
         variables,
       });
       translations.forEach((translation) => this.addTranslation(language, translation));
-      if (target[key] === undefined)
-        target[key] = outputTypeManager.convertOriginalMessage(fullKey, variables);
+      if (target[key] === undefined) {
+        target[key] = outputTypeManager.convertOriginalMessage(
+          fullKey,
+          variables,
+          this.langSyntax,
+          this.argsSyntax,
+          this.argSyntax
+        );
+      }
     });
   }
 
@@ -88,6 +108,9 @@ export const handleConversion = ({
   prefix = '',
   variableRegex,
   outputType = 'triton_placeholders',
+  langSyntax = '',
+  argsSyntax = '',
+  argSyntax = '',
   ignoredKeys = '',
   levelDelimiter = '.',
   files = {},
@@ -96,6 +119,9 @@ export const handleConversion = ({
     prefix,
     variableRegex: variableRegex ? new RegExp(variableRegex, 'g') : /.^/g,
     outputType,
+    langSyntax,
+    argsSyntax,
+    argSyntax,
     ignoredKeys: ignoredKeys
       .split('\n')
       .filter((value) => !!value)

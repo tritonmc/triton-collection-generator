@@ -20,6 +20,10 @@ const outputTypeOptions = [
     value: 'triton_placeholders',
   },
   {
+    name: 'Triton Placeholders (Custom Tags)',
+    value: 'triton_placeholders_custom',
+  },
+  {
     name: 'Placeholder API',
     value: 'papi',
   },
@@ -31,8 +35,13 @@ const InputForm = () => {
   const [variableRegex, setVariableRegex] = useState('');
   const [outputType, setOutputType] = useState('triton_placeholders');
   const [ignoredKeys, setIgnoredKeys] = useState('');
+  const [langSyntax, setLangSyntax] = useState('lang');
+  const [argSyntax, setArgSyntax] = useState('arg');
+  const [argsSyntax, setArgsSyntax] = useState('args');
   const [levelDelimiter, setLevelDelimiter] = useState('.');
   const [files, setFiles] = useState([]);
+
+  const isCustomPlaceholders = outputType === 'triton_placeholders_custom';
 
   return (
     <form className={classes.root} noValidate autoComplete='off'>
@@ -61,6 +70,40 @@ const InputForm = () => {
         value={outputType}
         onChange={handleFieldChange(setOutputType)}
       />
+      {isCustomPlaceholders && (
+        <>
+          <TextField
+            label='Lang Syntax'
+            value={langSyntax}
+            onChange={handleFieldChange(setLangSyntax)}
+            placeholder='lang'
+            helperText={`Custom lang tag you want to use. Start tag [${langSyntax}] and end tags [/${langSyntax}] are added automatically.`}
+            margin='normal'
+            variant='outlined'
+            fullWidth
+          />
+          <TextField
+            label='Args Syntax'
+            value={argsSyntax}
+            onChange={handleFieldChange(setArgsSyntax)}
+            placeholder='args'
+            helperText={`Custom args tag you want to use. Start tag [${argsSyntax}] and end tags [/${argsSyntax}] are added automatically.`}
+            margin='normal'
+            variant='outlined'
+            fullWidth
+          />
+          <TextField
+            label='Arg Syntax'
+            value={argSyntax}
+            onChange={handleFieldChange(setArgSyntax)}
+            placeholder='arg'
+            helperText={`Custom arg tag you want to use. Start tag [${argSyntax}] and end tags [/${argSyntax}] are added automatically.`}
+            margin='normal'
+            variant='outlined'
+            fullWidth
+          />
+        </>
+      )}
       <TextField
         label='Level Delimiter'
         value={levelDelimiter}
@@ -85,6 +128,9 @@ const InputForm = () => {
         prefix={prefix}
         variableRegex={variableRegex}
         outputType={outputType}
+        langSyntax={langSyntax}
+        argsSyntax={argsSyntax}
+        argSyntax={argsSyntax}
         ignoredKeys={ignoredKeys}
         levelDelimiter={levelDelimiter}
         files={files}

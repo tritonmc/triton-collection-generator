@@ -1,6 +1,6 @@
-export const convertOriginalMessage = (key, variables) => {
-  if (!variables) return `[lang]${key}[/lang]`;
-  return `[lang]${key}[args]${variables.map((v) => `[arg]${v}[/arg]`).join('')}[/args][/lang]`;
+export const convertOriginalMessage = (key, variables, lang, args, arg) => {
+  if (!variables) return `[${lang}]${key}[/${lang}]`;
+  return `[${lang}]${key}[${args}]${variables.map((v) => `[${arg}]${v}[/${arg}]`).join('')}[/${args}][/${lang}]`;
 };
 
 export const getTranslations = ({ text, key, variables }) => {
