@@ -130,7 +130,7 @@ const InputForm = () => {
         outputType={outputType}
         langSyntax={langSyntax}
         argsSyntax={argsSyntax}
-        argSyntax={argsSyntax}
+        argSyntax={argSyntax}
         ignoredKeys={ignoredKeys}
         levelDelimiter={levelDelimiter}
         files={files}
