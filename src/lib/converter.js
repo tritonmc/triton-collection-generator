@@ -1,25 +1,6 @@
+import deepCopyObject from './converterUtils';
 import { getFormatManager, json } from './formats';
 import { getOutputTypeManager } from './outputType';
-
-function deepCopy(value, copies = new WeakMap()) {
-  if (typeof value !== 'object' || value === null) {
-    return value;
-  }
-
-  if (copies.has(value)) {
-    return copies.get(value);
-  }
-
-  const copy = Array.isArray(value) ? [] : {};
-
-  copies.set(value, copy);
-
-  Object.keys(value).forEach((key) => {
-    copy[key] = deepCopy(value[key], copies);
-  });
-
-  return copy;
-}
 
 class Converter {
   constructor({
@@ -114,10 +95,10 @@ class Converter {
   handleStringList(value, key, target) {
     if (!this.mainLanguageValues[key]) {
       // If the main language value for this key is not set yet, store it.
-      this.mainLanguageValues[key] = deepCopy(value);
+      this.mainLanguageValues[key] = deepCopyObject(value);
     }
     // Use the value from the main language file instead of the random value.
-    target[key] = deepCopy(this.mainLanguageValues[key]);
+    target[key] = deepCopyObject(this.mainLanguageValues[key]);
   }
 
   isIgnoredKey(key) {
