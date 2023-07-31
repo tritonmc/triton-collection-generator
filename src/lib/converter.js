@@ -1,6 +1,26 @@
 import { getFormatManager, json } from './formats';
 import { getOutputTypeManager } from './outputType';
 
+function deepCopy(value, copies = new WeakMap()) {
+  if (typeof value !== 'object' || value === null) {
+    return value;
+  }
+
+  if (copies.has(value)) {
+    return copies.get(value);
+  }
+
+  const copy = Array.isArray(value) ? [] : {};
+
+  copies.set(value, copy);
+
+  Object.keys(value).forEach((key) => {
+    copy[key] = deepCopy(value[key], copies);
+  });
+
+  return copy;
+}
+
 class Converter {
   constructor({
     prefix,
@@ -10,6 +30,8 @@ class Converter {
     argSyntax,
     argsSyntax,
     ignoredKeys,
+    keyLowercase,
+    ignoreArray,
     levelDelimiter,
     files,
   }) {
@@ -20,18 +42,26 @@ class Converter {
     this.argSyntax = argSyntax;
     this.argsSyntax = argsSyntax;
     this.ignoredKeys = ignoredKeys;
+    this.keyLowercase = keyLowercase;
+    this.ignoreArray = ignoreArray;
     this.levelDelimiter = levelDelimiter;
     this.files = files;
     this.output = [];
     this.outputOriginal = {};
+    this.mainLanguageValues = {}; // Store values from the main language file
   }
 
   convert() {
+    this.mainLanguageValues = {}; // Reset the main language values for each conversion
     this.files.forEach((file) => this.convertFile(file, this.outputOriginal));
   }
 
   convertFile({ language, content }, target, fullPath = []) {
     Object.entries(content).forEach(([key, value]) => {
+      if (Array.isArray(value) && this.ignoreArray) {
+        this.handleStringList(value, key, target);
+        return;
+      }
       if (typeof value === 'object' && value !== null) {
         if (target[key] === undefined) target[key] = Array.isArray(value) ? [] : {};
         this.convertFile({ language, content: value }, target[key], [...fullPath, key]);
@@ -42,7 +72,8 @@ class Converter {
         if (target[key] === undefined) target[key] = value;
         return;
       }
-      const fullKey = `${this.prefix}${keyFullPath}`;
+      let fullKey = `${this.prefix}${keyFullPath}`;
+      if (this.keyLowercase) fullKey = fullKey.toLowerCase();
       const outputTypeManager = getOutputTypeManager(this.outputType);
       const variables = value.match(this.variableRegex);
       const translations = outputTypeManager.getTranslations({
@@ -79,6 +110,16 @@ class Converter {
     }
   }
 
+  // Helper method to handle string lists when ignoreStringLists is enabled
+  handleStringList(value, key, target) {
+    if (!this.mainLanguageValues[key]) {
+      // If the main language value for this key is not set yet, store it.
+      this.mainLanguageValues[key] = deepCopy(value);
+    }
+    // Use the value from the main language file instead of the random value.
+    target[key] = deepCopy(this.mainLanguageValues[key]);
+  }
+
   isIgnoredKey(key) {
     return this.ignoredKeys.some((v) => !!key.match(v));
   }
@@ -112,6 +153,8 @@ export const handleConversion = ({
   argsSyntax = 'args',
   argSyntax = 'arg',
   ignoredKeys = '',
+  keyLowercase = false,
+  ignoreArray = false,
   levelDelimiter = '.',
   files = {},
 }) => {
@@ -126,6 +169,8 @@ export const handleConversion = ({
       .split('\n')
       .filter((value) => !!value)
       .map((value) => new RegExp(`^${value}$`)),
+    keyLowercase,
+    ignoreArray,
     levelDelimiter,
     files: Object.keys(files).map(mapFiles(files)),
   });
