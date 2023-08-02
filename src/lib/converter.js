@@ -33,14 +33,13 @@ class Converter {
   }
 
   convert() {
-    this.mainLanguageValues = {}; // Reset the main language values for each conversion
     this.files.forEach((file) => this.convertFile(file, this.outputOriginal));
   }
 
   convertFile({ language, content }, target, fullPath = []) {
     Object.entries(content).forEach(([key, value]) => {
-      if (Array.isArray(value) && this.ignoreArray) {
-        this.handleStringList(value, key, target);
+      if (Array.isArray(value) && this.ignoreArray && value !== null) {
+        this.handleIgnoreArray(value, key, target);
         return;
       }
       if (typeof value === 'object' && value !== null) {
@@ -91,8 +90,8 @@ class Converter {
     }
   }
 
-  // Helper method to handle string lists when ignoreStringLists is enabled
-  handleStringList(value, key, target) {
+  // Helper method to handle arrays when ignoreArray is enabled
+  handleIgnoreArray(value, key, target) {
     if (!this.mainLanguageValues[key]) {
       // If the main language value for this key is not set yet, store it.
       this.mainLanguageValues[key] = deepCopyObject(value);
