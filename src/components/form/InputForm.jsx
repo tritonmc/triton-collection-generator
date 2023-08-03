@@ -62,8 +62,8 @@ const outputTypeOptions = [
 
 const itemKeyFormatOptions = [
   {
-    name: 'Original Conventions',
-    value: 'original',
+    name: 'Default',
+    value: 'default',
   },
   {
     name: 'All Lowercase',
@@ -85,7 +85,7 @@ const InputForm = () => {
   const [argSyntax, setArgSyntax] = useState('arg');
   const [argsSyntax, setArgsSyntax] = useState('args');
   const [levelDelimiter, setLevelDelimiter] = useState('.');
-  const [itemKeyFormat, setItemKeyFormat] = useState('original');
+  const [itemKeyFormat, setItemKeyFormat] = useState('default');
   const [ignoreArray, setIgnoreArray] = useState(false);
   const [files, setFiles] = useState([]);
 
@@ -219,6 +219,12 @@ const InputForm = () => {
                 />
                 <FormHelperText>
                   Select the style for item keys in the converted output file.
+                  <br />
+                  Default: Follows the file key format (e.g., plugin.Messages.Prefix).
+                  <br />
+                  All Lowercase: Converts all item keys to lowercase (e.g., plugin.messages.prefix).
+                  <br />
+                  All Uppercase: Converts all item keys to uppercase (e.g., PLUGIN.MESSAGES.PREFIX).
                 </FormHelperText>
               </div>
             </FormGroup>
