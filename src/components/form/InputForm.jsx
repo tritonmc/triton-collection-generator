@@ -60,6 +60,21 @@ const outputTypeOptions = [
   },
 ];
 
+const itemKeyFormatOptions = [
+  {
+    name: 'Original Conventions',
+    value: 'original',
+  },
+  {
+    name: 'All Lowercase',
+    value: 'lowercase',
+  },
+  {
+    name: 'All Uppercase',
+    value: 'uppercase',
+  },
+];
+
 const InputForm = () => {
   const classes = useStyles();
   const [prefix, setPrefix] = useState('');
@@ -70,7 +85,7 @@ const InputForm = () => {
   const [argSyntax, setArgSyntax] = useState('arg');
   const [argsSyntax, setArgsSyntax] = useState('args');
   const [levelDelimiter, setLevelDelimiter] = useState('.');
-  const [keyLowercase, setKeyLowercase] = useState(false);
+  const [itemKeyFormat, setItemKeyFormat] = useState('original');
   const [ignoreArray, setIgnoreArray] = useState(false);
   const [files, setFiles] = useState([]);
 
@@ -157,10 +172,7 @@ const InputForm = () => {
         variant='outlined'
       />
       <Accordion className={classes.accordion}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          id='additional-options'
-        >
+        <AccordionSummary expandIcon={<ExpandMoreIcon />} id='additional-options'>
           <AddIcon />
           <div>
             <Typography className={classes.accordionHeading}>Additional options</Typography>
@@ -169,18 +181,6 @@ const InputForm = () => {
         <AccordionDetails>
           <FormControl component='fieldset'>
             <FormGroup>
-              <div>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={keyLowercase}
-                      onChange={handleCheckboxChange(setKeyLowercase)}
-                    />
-                  }
-                  label='Force Item Key Lowercase'
-                />
-                <FormHelperText>When checked, it will make item key lowercase.</FormHelperText>
-              </div>
               <div>
                 <Tooltip
                   classes={{ tooltip: classes.toolTipText }}
@@ -207,6 +207,20 @@ const InputForm = () => {
                   conversion, remain consistent with the main language file.
                 </FormHelperText>
               </div>
+              <div>
+                <Select
+                  title='Item Key Formatting Style'
+                  options={itemKeyFormatOptions}
+                  value={itemKeyFormat}
+                  onChange={handleFieldChange(setItemKeyFormat)}
+                  fullWidth
+                  margin='normal'
+                  variant='outlined'
+                />
+                <FormHelperText>
+                  Select the style for item keys in the converted output file.
+                </FormHelperText>
+              </div>
             </FormGroup>
           </FormControl>
         </AccordionDetails>
@@ -220,7 +234,7 @@ const InputForm = () => {
         argsSyntax={argsSyntax}
         argSyntax={argSyntax}
         ignoredKeys={ignoredKeys}
-        keyLowercase={keyLowercase}
+        itemKeyFormat={itemKeyFormat}
         ignoreArray={ignoreArray}
         levelDelimiter={levelDelimiter}
         files={files}

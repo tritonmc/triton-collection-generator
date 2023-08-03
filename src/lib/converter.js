@@ -11,7 +11,7 @@ class Converter {
     argSyntax,
     argsSyntax,
     ignoredKeys,
-    keyLowercase,
+    itemKeyFormat,
     ignoreArray,
     levelDelimiter,
     files,
@@ -23,7 +23,7 @@ class Converter {
     this.argSyntax = argSyntax;
     this.argsSyntax = argsSyntax;
     this.ignoredKeys = ignoredKeys;
-    this.keyLowercase = keyLowercase;
+    this.itemKeyFormat = itemKeyFormat;
     this.ignoreArray = ignoreArray;
     this.levelDelimiter = levelDelimiter;
     this.files = files;
@@ -52,8 +52,7 @@ class Converter {
         if (target[key] === undefined) target[key] = value;
         return;
       }
-      let fullKey = `${this.prefix}${keyFullPath}`;
-      if (this.keyLowercase) fullKey = fullKey.toLowerCase();
+      const fullKey = this.handleKeyConvention(`${this.prefix}${keyFullPath}`);
       const outputTypeManager = getOutputTypeManager(this.outputType);
       const variables = value.match(this.variableRegex);
       const translations = outputTypeManager.getTranslations({
@@ -100,6 +99,22 @@ class Converter {
     target[key] = deepCopyObject(this.mainLanguageValues[key]);
   }
 
+  handleKeyConvention(key) {
+    switch (this.itemKeyFormat) {
+      case 'original':
+        return key;
+
+      case 'lowercase':
+        return key.toLowerCase();
+
+      case 'uppercase':
+        return key.toUpperCase();
+
+      default:
+        return key;
+    }
+  }
+
   isIgnoredKey(key) {
     return this.ignoredKeys.some((v) => !!key.match(v));
   }
@@ -133,7 +148,7 @@ export const handleConversion = ({
   argsSyntax = 'args',
   argSyntax = 'arg',
   ignoredKeys = '',
-  keyLowercase = false,
+  itemKeyFormat = 'original',
   ignoreArray = false,
   levelDelimiter = '.',
   files = {},
@@ -149,7 +164,7 @@ export const handleConversion = ({
       .split('\n')
       .filter((value) => !!value)
       .map((value) => new RegExp(`^${value}$`)),
-    keyLowercase,
+    itemKeyFormat,
     ignoreArray,
     levelDelimiter,
     files: Object.keys(files).map(mapFiles(files)),
