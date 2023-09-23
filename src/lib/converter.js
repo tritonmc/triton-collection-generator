@@ -39,7 +39,7 @@ class Converter {
   convertFile({ language, content }, target, fullPath = []) {
     Object.entries(content).forEach(([key, value]) => {
       if (Array.isArray(value) && this.ignoreArray && value !== null) {
-        this.handleIgnoreArray(value, key, target);
+        this.handleIgnoreArray(value, fullPath, key, target);
         return;
       }
       if (typeof value === 'object' && value !== null) {
@@ -90,13 +90,14 @@ class Converter {
   }
 
   // Helper method to handle arrays when ignoreArray is enabled
-  handleIgnoreArray(value, key, target) {
-    if (!this.mainLanguageValues[key]) {
+  handleIgnoreArray(value, fullPath, key, target) {
+    const keyFullPath = [...fullPath, key];
+    if (!this.mainLanguageValues[keyFullPath]) {
       // If the main language value for this key is not set yet, store it.
-      this.mainLanguageValues[key] = deepCopyObject(value);
+      this.mainLanguageValues[keyFullPath] = deepCopyObject(value);
     }
     // Use the value from the main language file instead of the random value.
-    target[key] = deepCopyObject(this.mainLanguageValues[key]);
+    target[key] = deepCopyObject(this.mainLanguageValues[keyFullPath]);
   }
 
   handleKeyConvention(key) {
