@@ -1,5 +1,22 @@
-import { TextField } from '@material-ui/core';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  FormHelperText,
+  TextField,
+  Tooltip,
+  Typography,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import {
+  Add as AddIcon,
+  ExpandMore as ExpandMoreIcon,
+  HelpOutline as HelpOutlineIcon,
+} from '@material-ui/icons';
 import React, { useState } from 'react';
 
 import FileUpload from './FileUpload';
@@ -10,9 +27,23 @@ const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(3),
   },
+  accordion: {
+    marginTop: 1,
+    '&.Mui-expanded': {
+      marginTop: -theme.spacing(0.5),
+    },
+  },
+  accordionHeading: {
+    marginLeft: theme.spacing(1),
+  },
+  toolTipText: {
+    fontSize: 16,
+    maxWidth: 350,
+  },
 }));
 
 const handleFieldChange = (setValue) => (event) => setValue(event.target.value);
+const handleCheckboxChange = (setChecked) => (event) => setChecked(event.target.checked);
 
 const outputTypeOptions = [
   {
@@ -29,6 +60,21 @@ const outputTypeOptions = [
   },
 ];
 
+const itemKeyFormatOptions = [
+  {
+    name: 'Default',
+    value: 'default',
+  },
+  {
+    name: 'All Lowercase',
+    value: 'lowercase',
+  },
+  {
+    name: 'All Uppercase',
+    value: 'uppercase',
+  },
+];
+
 const InputForm = () => {
   const classes = useStyles();
   const [prefix, setPrefix] = useState('');
@@ -39,6 +85,8 @@ const InputForm = () => {
   const [argSyntax, setArgSyntax] = useState('arg');
   const [argsSyntax, setArgsSyntax] = useState('args');
   const [levelDelimiter, setLevelDelimiter] = useState('.');
+  const [itemKeyFormat, setItemKeyFormat] = useState('default');
+  const [ignoreArray, setIgnoreArray] = useState(false);
   const [files, setFiles] = useState([]);
 
   const isCustomPlaceholders = outputType === 'triton_placeholders_custom';
@@ -123,6 +171,66 @@ const InputForm = () => {
         margin='normal'
         variant='outlined'
       />
+      <Accordion className={classes.accordion}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />} id='additional-options'>
+          <AddIcon />
+          <div>
+            <Typography className={classes.accordionHeading}>Additional options</Typography>
+          </div>
+        </AccordionSummary>
+        <AccordionDetails>
+          <FormControl component='fieldset'>
+            <FormGroup>
+              <div>
+                <Tooltip
+                  classes={{ tooltip: classes.toolTipText }}
+                  title='An array is a data structure that holds a collection of items. When this
+                      option is checked, the converter will preserve any list-like data, ignored arrays data are copied from the main language file.'
+                >
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={ignoreArray}
+                        onChange={handleCheckboxChange(setIgnoreArray)}
+                      />
+                    }
+                    label={
+                      <>
+                        Ignore Array
+                        <HelpOutlineIcon style={{ marginLeft: 4, fontSize: 15 }} />
+                      </>
+                    }
+                  />
+                </Tooltip>
+                <FormHelperText>
+                  When checked, the converter will keep all list-like data unchanged during
+                  conversion, remain consistent with the main language file.
+                </FormHelperText>
+              </div>
+              <div>
+                <Select
+                  title='Item Key Formatting Style'
+                  options={itemKeyFormatOptions}
+                  value={itemKeyFormat}
+                  onChange={handleFieldChange(setItemKeyFormat)}
+                  fullWidth
+                  margin='normal'
+                  variant='outlined'
+                />
+                <FormHelperText>
+                  Select the style for item keys in the converted output file.
+                  <br />
+                  Default: Follows the file key format (e.g., plugin.Messages.Prefix).
+                  <br />
+                  All Lowercase: Converts all item keys to lowercase (e.g., plugin.messages.prefix).
+                  <br />
+                  All Uppercase: Converts all item keys to uppercase (e.g., PLUGIN.MESSAGES.PREFIX).
+                </FormHelperText>
+              </div>
+            </FormGroup>
+          </FormControl>
+        </AccordionDetails>
+      </Accordion>
       <FileUpload setFiles={setFiles} />
       <SubmitButton
         prefix={prefix}
@@ -132,6 +240,8 @@ const InputForm = () => {
         argsSyntax={argsSyntax}
         argSyntax={argSyntax}
         ignoredKeys={ignoredKeys}
+        itemKeyFormat={itemKeyFormat}
+        ignoreArray={ignoreArray}
         levelDelimiter={levelDelimiter}
         files={files}
       />
