@@ -1,21 +1,35 @@
-import { FormHelperText, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { DropzoneArea } from 'material-ui-dropzone';
+import { FormHelperText, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
+// import { DropzoneArea } from 'material-ui-dropzone';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'FileUpload';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  dropzone: `${PREFIX}-dropzone`,
+  chip: `${PREFIX}-chip`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(3),
   },
-  dropzone: {
+
+  [`& .${classes.dropzone}`]: {
     background: theme.palette.background.default,
     color: theme.palette.getContrastText(theme.palette.background.default),
   },
-  chip: {
+
+  [`& .${classes.chip}`]: {
     margin: theme.spacing(1),
-  },
+  }
 }));
 
 const acceptedFiles = ['.properties', '.yml', '.yaml', '.json'];
@@ -24,12 +38,12 @@ const dropzoneText = `Drag and drop your files here or click here. File names wi
 )}`;
 
 const FileUpload = ({ setFiles }) => {
-  const classes = useStyles();
+
 
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
       <Typography variant='h6'>Input files</Typography>
-      <DropzoneArea
+      {/*<DropzoneArea
         onChange={setFiles}
         dropzoneClass={classes.dropzone}
         acceptedFiles={acceptedFiles}
@@ -38,9 +52,9 @@ const FileUpload = ({ setFiles }) => {
         dropzoneText={dropzoneText}
         useChipsForPreview
         previewChipProps={{ className: classes.chip }}
-      />
+      />*/}
       <FormHelperText>The first file in the list above will be the main language.</FormHelperText>
-    </div>
+    </Root>
   );
 };
 
