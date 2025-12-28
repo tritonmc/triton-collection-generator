@@ -9,8 +9,6 @@
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "eslint": "eslint --color *.{html,js,json,jsx,md} src/*.{html,js,json,jsx,md}",
-    "eslint:fix": "npm run eslint -- --fix",
     "start": "react-scripts start",
     "test": "react-scripts test"
   },
@@ -25,9 +23,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.9",
@@ -44,32 +39,6 @@
     "react-scripts": "3.4.1"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-adjunct": "^4.0.2",
-    "eslint-config-airbnb": "^18.1.0",
-    "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-array-func": "^3.1.5",
-    "eslint-plugin-eslint-comments": "^3.1.2",
-    "eslint-plugin-html": "^6.0.1",
-    "eslint-plugin-jest": "^23.8.2",
-    "eslint-plugin-jest-async": "^1.0.3",
-    "eslint-plugin-json": "^2.1.2",
-    "eslint-plugin-json-format": "^2.0.1",
-    "eslint-plugin-markdown": "^1.0.2",
-    "eslint-plugin-no-constructor-bind": "^1.2.8",
-    "eslint-plugin-no-secrets": "^0.6.8",
-    "eslint-plugin-no-unsanitized": "^3.1.2",
-    "eslint-plugin-no-use-extend-native": "^0.4.1",
-    "eslint-plugin-optimize-regex": "^1.1.7",
-    "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-scanjs-rules": "^0.2.1",
-    "eslint-plugin-security": "^1.4.0",
-    "eslint-plugin-simple-import-sort": "^5.0.2",
-    "eslint-plugin-sonarjs": "^0.5.0",
-    "eslint-plugin-switch-case": "^1.1.2",
-    "eslint-plugin-unicorn": "^18.0.1",
     "prettier": "^2.0.4"
   }
 }
