@@ -1297,10 +1297,10 @@ prop-types@^15.8.1:
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
-properties@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/properties/-/properties-1.2.1.tgz#0ee97a7fc020b1a2a55b8659eda4aa8d869094bd"
-  integrity sha1-Dul6f8AgsaKlW4ZZ7aSqjYaQlL0=
+properties-file@^3.6.3:
+  version "3.6.3"
+  resolved "https://registry.yarnpkg.com/properties-file/-/properties-file-3.6.3.tgz#00642acc3e6ecf1e21cc735be8c090a86765a9c4"
+  integrity sha512-T0BLq5U7vMtfoHMAyirR386h/PkS9rva/EQIvy3yFmkYIjc485tgxN7eHgbtJx48O28A94MUYuRGF/iyC/L54A==
 
 react-dom@^19.2.3:
   version "19.2.3"
