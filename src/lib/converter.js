@@ -12,7 +12,7 @@ class Converter {
     argsSyntax,
     ignoredKeys,
     itemKeyFormat,
-    ignoreArray,
+    ignoreArrays,
     levelDelimiter,
     files,
   }) {
@@ -24,7 +24,7 @@ class Converter {
     this.argsSyntax = argsSyntax;
     this.ignoredKeys = ignoredKeys;
     this.itemKeyFormat = itemKeyFormat;
-    this.ignoreArray = ignoreArray;
+    this.ignoreArrays = ignoreArrays;
     this.levelDelimiter = levelDelimiter;
     this.files = files;
     this.output = [];
@@ -38,7 +38,7 @@ class Converter {
 
   convertFile({ language, content }, target, fullPath = []) {
     Object.entries(content).forEach(([key, value]) => {
-      if (Array.isArray(value) && this.ignoreArray) {
+      if (Array.isArray(value) && this.ignoreArrays) {
         this.handleIgnoreArray(value, fullPath, key, target);
         return;
       }
@@ -89,7 +89,7 @@ class Converter {
     }
   }
 
-  // Helper method to handle arrays when ignoreArray is enabled
+  // Helper method to handle arrays when ignoreArrays is enabled
   handleIgnoreArray(value, fullPath, key, target) {
     const keyFullPath = [...fullPath, key];
     if (!this.mainLanguageValues[keyFullPath]) {
@@ -147,7 +147,7 @@ export const handleConversion = ({
   argSyntax = 'arg',
   ignoredKeys = '',
   itemKeyFormat = 'preserve',
-  ignoreArray = false,
+  ignoreArrays = false,
   levelDelimiter = '.',
   files = {},
 }) => {
@@ -163,7 +163,7 @@ export const handleConversion = ({
       .filter((value) => !!value)
       .map((value) => new RegExp(`^${value}$`)),
     itemKeyFormat,
-    ignoreArray,
+    ignoreArrays,
     levelDelimiter,
     files: Object.keys(files).map(mapFiles(files)),
   });

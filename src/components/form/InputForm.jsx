@@ -99,7 +99,7 @@ const InputForm = () => {
   const [argsSyntax, setArgsSyntax] = useState('args');
   const [levelDelimiter, setLevelDelimiter] = useState('.');
   const [itemKeyFormat, setItemKeyFormat] = useState('preserve');
-  const [ignoreArray, setIgnoreArray] = useState(false);
+  const [ignoreArrays, setIgnoreArrays] = useState(false);
   const [files, setFiles] = useState([]);
 
   const isCustomPlaceholders = outputType === 'triton_placeholders_custom';
@@ -203,13 +203,13 @@ const InputForm = () => {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={ignoreArray}
-                        onChange={handleCheckboxChange(setIgnoreArray)}
+                        checked={ignoreArrays}
+                        onChange={handleCheckboxChange(setIgnoreArrays)}
                       />
                     }
                     label={
                       <>
-                        Ignore Array
+                        Ignore Arrays
                         <HelpOutlineIcon style={{ marginLeft: 4, fontSize: 15 }} />
                       </>
                     }
@@ -254,7 +254,7 @@ const InputForm = () => {
         argSyntax={argSyntax}
         ignoredKeys={ignoredKeys}
         itemKeyFormat={itemKeyFormat}
-        ignoreArray={ignoreArray}
+        ignoreArrays={ignoreArrays}
         levelDelimiter={levelDelimiter}
         files={files}
       />

@@ -14,7 +14,7 @@ const SubmitButton = ({
   argSyntax,
   ignoredKeys,
   itemKeyFormat,
-  ignoreArray,
+  ignoreArrays,
   levelDelimiter,
   files,
 }) => {
@@ -30,7 +30,7 @@ const SubmitButton = ({
       argSyntax,
       ignoredKeys,
       itemKeyFormat,
-      ignoreArray,
+      ignoreArrays,
       levelDelimiter,
       files: fileContents,
     });
@@ -59,7 +59,7 @@ SubmitButton.propTypes = {
   argSyntax: PropTypes.string,
   ignoredKeys: PropTypes.string,
   itemKeyFormat: PropTypes.string,
-  ignoreArray: PropTypes.bool,
+  ignoreArrays: PropTypes.bool,
   files: PropTypes.arrayOf(PropTypes.any),
 };
 
@@ -72,7 +72,7 @@ SubmitButton.defaultProps = {
   argSyntax: 'arg',
   ignoredKeys: '',
   itemKeyFormat: 'preserve',
-  ignoreArray: false,
+  ignoreArrays: false,
   files: [],
 };
 
