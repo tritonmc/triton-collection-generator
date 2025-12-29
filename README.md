@@ -2,11 +2,8 @@
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/tritonmc/triton-collection-generator)
 ![GitHub last commit](https://img.shields.io/github/last-commit/tritonmc/triton-collection-generator)
-[![Maintainability](https://api.codeclimate.com/v1/badges/2d4a9931350a360f7e32/maintainability)](https://codeclimate.com/github/tritonmc/triton-collection-generator/maintainability)
 ![Node.js CI](https://github.com/tritonmc/triton-collection-generator/workflows/Node.js%20CI/badge.svg)
-![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/tritonmc/triton-collection-generator)
 [![Discord](https://img.shields.io/discord/395565283047374850?label=Discord)](https://triton.rexcantor64.com/discord)
-[![David](https://img.shields.io/david/tritonmc/triton-collection-generator)](https://david-dm.org/tritonmc/triton-collection-generator)
 ![GitHub issues](https://img.shields.io/github/issues/tritonmc/triton-collection-generator)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/tritonmc/triton-collection-generator)
 ![GitHub](https://img.shields.io/github/license/tritonmc/triton-collection-generator)
