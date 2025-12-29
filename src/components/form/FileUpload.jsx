@@ -31,14 +31,16 @@ const Root = styled('div')((
   }
 }));
 
-const acceptedFiles = ['.properties', '.yml', '.yaml', '.json'];
-const dropzoneText = `Drag and drop your files here or click here. File names will be used as language IDs. Accepted formats: ${acceptedFiles.join(
+const acceptedFiles = {
+  "text/plain": ['.properties'],
+  "application/yaml": ['.yml', '.yaml'],
+  "application/json": ['.json']
+};
+const dropzoneText = `Drag and drop your files here or click here. File names will be used as language IDs. Accepted formats: ${Object.values(acceptedFiles).flat().join(
   ', '
 )}`;
 
 const FileUpload = ({ setFiles }) => {
-
-
   return (
     <Root className={classes.root}>
       <Typography variant='h6'>Input files</Typography>

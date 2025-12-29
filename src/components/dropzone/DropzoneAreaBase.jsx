@@ -45,11 +45,6 @@ const StyledRoot = styled("div")(({ theme: { palette, shape, spacing } }) => ({
         cursor: 'pointer',
         overflow: 'hidden',
     },
-    [`&.${classes.invalid}`]: {
-        // eslint-disable-next-line max-len
-        backgroundImage: `repeating-linear-gradient(-45deg, ${palette.error.light}, ${palette.error.light} 25px, ${palette.error.dark} 25px, ${palette.error.dark} 50px)`,
-        borderColor: palette.error.main,
-    },
     [`&.${classes.active}`]: {
         animation: `${progress} 2s linear infinite !important`,
         // eslint-disable-next-line max-len
@@ -57,6 +52,11 @@ const StyledRoot = styled("div")(({ theme: { palette, shape, spacing } }) => ({
         backgroundSize: '150% 100%',
         border: 'solid',
         borderColor: palette.primary.light,
+    },
+    [`&.${classes.invalid}`]: {
+        // eslint-disable-next-line max-len
+        backgroundImage: `repeating-linear-gradient(-45deg, ${palette.error.light}, ${palette.error.light} 25px, ${palette.error.dark} 25px, ${palette.error.dark} 50px)`,
+        borderColor: palette.error.main,
     },
     [`& .${classes.textContainer}`]: {
         textAlign: 'center',
@@ -160,12 +160,14 @@ class DropzoneAreaBase extends React.PureComponent {
             onDropRejected,
         } = this.props;
 
+        const acceptedExtensions = Object.values(acceptedFiles).flat();
+
         let message = '';
         if (fileObjects.length + rejectedFiles.length > filesLimit) {
             message = getFileLimitExceedMessage(filesLimit);
         } else {
             rejectedFiles.forEach((rejectedFile) => {
-                message = getDropRejectMessage(rejectedFile, acceptedFiles, maxFileSize);
+                message = getDropRejectMessage(rejectedFile, acceptedExtensions, maxFileSize);
             });
         }
 
@@ -234,7 +236,7 @@ class DropzoneAreaBase extends React.PureComponent {
         } = this.props;
         const { openSnackBar, snackbarMessage, snackbarVariant } = this.state;
 
-        const acceptFiles = acceptedFiles?.join(',');
+        const acceptFiles = acceptedFiles;
         const isMultiple = filesLimit > 1;
         const previewsVisible = showPreviews && fileObjects.length > 0;
         const previewsInDropzoneVisible = showPreviewsInDropzone && fileObjects.length > 0;
