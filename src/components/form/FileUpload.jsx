@@ -1,8 +1,7 @@
 import { FormHelperText, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-// import { DropzoneArea } from 'material-ui-dropzone';
+import DropzoneArea from '../dropzone/DropzoneArea';
 import PropTypes from 'prop-types';
-import React from 'react';
 
 const PREFIX = 'FileUpload';
 
@@ -43,7 +42,7 @@ const FileUpload = ({ setFiles }) => {
   return (
     <Root className={classes.root}>
       <Typography variant='h6'>Input files</Typography>
-      {/*<DropzoneArea
+      <DropzoneArea
         onChange={setFiles}
         dropzoneClass={classes.dropzone}
         acceptedFiles={acceptedFiles}
@@ -52,7 +51,7 @@ const FileUpload = ({ setFiles }) => {
         dropzoneText={dropzoneText}
         useChipsForPreview
         previewChipProps={{ className: classes.chip }}
-      />*/}
+      />
       <FormHelperText>The first file in the list above will be the main language.</FormHelperText>
     </Root>
   );

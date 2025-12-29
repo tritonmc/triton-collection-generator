@@ -32,11 +32,11 @@
     "formik": "^2.4.9",
     "js-file-download": "^0.4.11",
     "js-yaml": "^4.1.1",
-    "material-ui-dropzone": "^3.5.0",
     "prop-types": "^15.8.1",
     "properties-file": "^3.6.3",
     "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "react-dom": "^19.2.3",
+    "react-dropzone": "^14.3.8"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.2",
