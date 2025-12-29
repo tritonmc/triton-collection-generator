@@ -1,17 +1,27 @@
-import { Link, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Link, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import React from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'Footer';
+
+const classes = {
+  root: `${PREFIX}-root`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     marginTop: theme.spacing(3),
-  },
+  }
 }));
 
 const Footer = () => {
-  const classes = useStyles();
+
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
       <Typography variant='body2'>
         {`Copyright © ${new Date().getFullYear()} `}
         <Link href='https://diogotc.com' color='secondary'>
@@ -19,7 +29,7 @@ const Footer = () => {
         </Link>
         {` (Rexcantor64)`}
       </Typography>
-    </div>
+    </Root>
   );
 };
 

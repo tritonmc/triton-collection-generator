@@ -1,15 +1,25 @@
-import { TextField } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { TextField } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import React, { useState } from 'react';
 
 import FileUpload from './FileUpload';
 import Select from './Select';
 import SubmitButton from './SubmitButton';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'InputForm';
+
+const classes = {
+  root: `${PREFIX}-root`
+};
+
+const Root = styled('form')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     margin: theme.spacing(3),
-  },
+  }
 }));
 
 const handleFieldChange = (setValue) => (event) => setValue(event.target.value);
@@ -30,7 +40,7 @@ const outputTypeOptions = [
 ];
 
 const InputForm = () => {
-  const classes = useStyles();
+
   const [prefix, setPrefix] = useState('');
   const [variableRegex, setVariableRegex] = useState('');
   const [outputType, setOutputType] = useState('triton_placeholders');
@@ -44,7 +54,7 @@ const InputForm = () => {
   const isCustomPlaceholders = outputType === 'triton_placeholders_custom';
 
   return (
-    <form className={classes.root} noValidate autoComplete='off'>
+    <Root className={classes.root} noValidate autoComplete='off'>
       <TextField
         label='Prefix'
         value={prefix}
@@ -135,7 +145,7 @@ const InputForm = () => {
         levelDelimiter={levelDelimiter}
         files={files}
       />
-    </form>
+    </Root>
   );
 };
 

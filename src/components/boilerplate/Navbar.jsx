@@ -1,19 +1,25 @@
-import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import React from 'react';
 
 import GitHubIcon from '../icon/GitHubIcon';
 
-const useStyles = makeStyles({
-  grow: {
+const PREFIX = 'Navbar';
+
+const classes = {
+  grow: `${PREFIX}-grow`
+};
+
+const StyledAppBar = styled(AppBar)({
+  [`& .${classes.grow}`]: {
     flexGrow: 1,
   },
 });
 
 const Navbar = () => {
-  const classes = useStyles();
+
   return (
-    <AppBar position='static'>
+    <StyledAppBar position='static'>
       <Toolbar>
         <Typography variant='h6' component='h1'>
           Triton Collection Generator
@@ -24,11 +30,11 @@ const Navbar = () => {
           href='https://github.com/diogotcorreia/triton-collection-generator'
           target='_blank'
           rel='noopenner'
-        >
+          size="large">
           <GitHubIcon />
         </IconButton>
       </Toolbar>
-    </AppBar>
+    </StyledAppBar>
   );
 };
 
