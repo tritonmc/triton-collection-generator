@@ -33,3 +33,4 @@ There you can see real examples of plugins being translated and their settings.
 
 - Diogo Correia ([diogotcorreia](https://github.com/diogotcorreia)) - Triton developer
 - MadFox ([XMadFoX](https://github.com/XMadFoX))
+- Calvin ([HappyAreaBean](https://github.com/HappyAreaBean))
