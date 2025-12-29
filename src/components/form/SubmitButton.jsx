@@ -71,7 +71,7 @@ SubmitButton.defaultProps = {
   argsSyntax: 'args',
   argSyntax: 'arg',
   ignoredKeys: '',
-  itemKeyFormat: 'default',
+  itemKeyFormat: 'preserve',
   ignoreArray: false,
   files: [],
 };

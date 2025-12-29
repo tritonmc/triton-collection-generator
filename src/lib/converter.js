@@ -38,7 +38,7 @@ class Converter {
 
   convertFile({ language, content }, target, fullPath = []) {
     Object.entries(content).forEach(([key, value]) => {
-      if (Array.isArray(value) && this.ignoreArray && value !== null) {
+      if (Array.isArray(value) && this.ignoreArray) {
         this.handleIgnoreArray(value, fullPath, key, target);
         return;
       }
@@ -102,16 +102,13 @@ class Converter {
 
   handleKeyConvention(key) {
     switch (this.itemKeyFormat) {
-      case 'original':
-        return key;
-
       case 'lowercase':
         return key.toLowerCase();
 
       case 'uppercase':
         return key.toUpperCase();
 
-      default:
+      default: // case 'preserve'
         return key;
     }
   }
@@ -149,7 +146,7 @@ export const handleConversion = ({
   argsSyntax = 'args',
   argSyntax = 'arg',
   ignoredKeys = '',
-  itemKeyFormat = 'default',
+  itemKeyFormat = 'preserve',
   ignoreArray = false,
   levelDelimiter = '.',
   files = {},
