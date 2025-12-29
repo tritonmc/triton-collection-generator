@@ -27,6 +27,9 @@ describe('With YAML input in two languages (en_GB & pt_PT)', () => {
       },
       8,
     ],
+    ['converts files while ignoring arrays', { ignoreArrays: true }, 9],
+    ['converts files and transforms keys to uppercase', { itemKeyFormat: 'uppercase' }, 10],
+    ['converts files and transforms keys to lowercase', { itemKeyFormat: 'lowercase' }, 11],
   ])('%s', (_, options, index) => {
     const result = handleConversion({ ...options, files: inputFiles });
     const expectedResult = getOutput(`original${index}.yml`, `output${index}.json`, 'yml');
