@@ -10,6 +10,8 @@ class Converter {
     argSyntax,
     argsSyntax,
     ignoredKeys,
+    itemKeyFormat,
+    ignoreArrays,
     levelDelimiter,
     files,
   }) {
@@ -20,6 +22,8 @@ class Converter {
     this.argSyntax = argSyntax;
     this.argsSyntax = argsSyntax;
     this.ignoredKeys = ignoredKeys;
+    this.itemKeyFormat = itemKeyFormat;
+    this.ignoreArrays = ignoreArrays;
     this.levelDelimiter = levelDelimiter;
     this.files = files;
     this.output = [];
@@ -32,7 +36,7 @@ class Converter {
 
   convertFile({ language, content }, target, fullPath = []) {
     Object.entries(content).forEach(([key, value]) => {
-      if (typeof value === 'object' && value !== null) {
+      if (typeof value === 'object' && value !== null && !(this.ignoreArrays && Array.isArray(value))) {
         if (target[key] === undefined) target[key] = Array.isArray(value) ? [] : {};
         this.convertFile({ language, content: value }, target[key], [...fullPath, key]);
         return;
@@ -42,7 +46,7 @@ class Converter {
         if (target[key] === undefined) target[key] = value;
         return;
       }
-      const fullKey = `${this.prefix}${keyFullPath}`;
+      const fullKey = this.handleKeyConvention(`${this.prefix}${keyFullPath}`);
       const outputTypeManager = getOutputTypeManager(this.outputType);
       const variables = value.match(this.variableRegex);
       const translations = outputTypeManager.getTranslations({
@@ -79,6 +83,19 @@ class Converter {
     }
   }
 
+  handleKeyConvention(key) {
+    switch (this.itemKeyFormat) {
+      case 'lowercase':
+        return key.toLowerCase();
+
+      case 'uppercase':
+        return key.toUpperCase();
+
+      default: // case 'preserve'
+        return key;
+    }
+  }
+
   isIgnoredKey(key) {
     return this.ignoredKeys.some((v) => !!key.match(v));
   }
@@ -112,6 +129,8 @@ export const handleConversion = ({
   argsSyntax = 'args',
   argSyntax = 'arg',
   ignoredKeys = '',
+  itemKeyFormat = 'preserve',
+  ignoreArrays = false,
   levelDelimiter = '.',
   files = {},
 }) => {
@@ -126,6 +145,8 @@ export const handleConversion = ({
       .split('\n')
       .filter((value) => !!value)
       .map((value) => new RegExp(`^${value}$`)),
+    itemKeyFormat,
+    ignoreArrays,
     levelDelimiter,
     files: Object.keys(files).map(mapFiles(files)),
   });

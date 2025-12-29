@@ -28,6 +28,9 @@ describe('With PROPERTIES input in two languages (en_GB & pt_PT)', () => {
       },
       7,
     ],
+    ['converts files while ignoring arrays', { ignoreArrays: true }, 1],
+    ['converts files and transforms keys to uppercase', { itemKeyFormat: 'uppercase' }, 8],
+    ['converts files and transforms keys to lowercase', { itemKeyFormat: 'lowercase' }, 9],
   ])('%s', (_, options, index) => {
     const result = handleConversion({ ...options, files: inputFiles });
     const expectedResult = getOutput(
