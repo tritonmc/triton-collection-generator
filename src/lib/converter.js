@@ -1,4 +1,3 @@
-import deepCopyObject from './converterUtils';
 import { getFormatManager, json } from './formats';
 import { getOutputTypeManager } from './outputType';
 
@@ -29,7 +28,6 @@ class Converter {
     this.files = files;
     this.output = [];
     this.outputOriginal = {};
-    this.mainLanguageValues = {}; // Store values from the main language file
   }
 
   convert() {
@@ -38,11 +36,7 @@ class Converter {
 
   convertFile({ language, content }, target, fullPath = []) {
     Object.entries(content).forEach(([key, value]) => {
-      if (Array.isArray(value) && this.ignoreArrays) {
-        this.handleIgnoreArray(value, fullPath, key, target);
-        return;
-      }
-      if (typeof value === 'object' && value !== null) {
+      if (typeof value === 'object' && value !== null && !(this.ignoreArrays && Array.isArray(value))) {
         if (target[key] === undefined) target[key] = Array.isArray(value) ? [] : {};
         this.convertFile({ language, content: value }, target[key], [...fullPath, key]);
         return;
@@ -87,17 +81,6 @@ class Converter {
     } else {
       this.output[index].languages[language] = value;
     }
-  }
-
-  // Helper method to handle arrays when ignoreArrays is enabled
-  handleIgnoreArray(value, fullPath, key, target) {
-    const keyFullPath = [...fullPath, key];
-    if (!this.mainLanguageValues[keyFullPath]) {
-      // If the main language value for this key is not set yet, store it.
-      this.mainLanguageValues[keyFullPath] = deepCopyObject(value);
-    }
-    // Use the value from the main language file instead of the random value.
-    target[key] = deepCopyObject(this.mainLanguageValues[keyFullPath]);
   }
 
   handleKeyConvention(key) {
