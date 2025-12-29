@@ -1,7 +1,7 @@
-import { safeDump, safeLoad } from 'js-yaml';
+import { dump, load } from 'js-yaml';
 
-export const fromFileContent = (content) => safeLoad(content);
+export const fromFileContent = (content) => load(content);
 
-export const toFileContent = (content) => safeDump(content);
+export const toFileContent = (content) => dump(content);
 
 export const originalFileName = 'original.yml';

@@ -10,33 +10,46 @@ import {
   TextField,
   Tooltip,
   Typography,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+} from '@mui/material';
 import {
   Add as AddIcon,
   ExpandMore as ExpandMoreIcon,
   HelpOutline as HelpOutlineIcon,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
+import { styled } from '@mui/material/styles';
 import React, { useState } from 'react';
 
 import FileUpload from './FileUpload';
 import Select from './Select';
 import SubmitButton from './SubmitButton';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'InputForm';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  accordion: `${PREFIX}-accordion`,
+  accordionHeading: `${PREFIX}-accordionHeading`,
+  tooltipText: `${PREFIX}-tooltipText`,
+};
+
+const Root = styled('form')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     margin: theme.spacing(3),
   },
-  accordion: {
+  [`& .${classes.accordion}`]: {
     marginTop: 1,
     '&.Mui-expanded': {
       marginTop: -theme.spacing(0.5),
     },
   },
-  accordionHeading: {
+  [`& .${classes.accordionHeading}`]: {
     marginLeft: theme.spacing(1),
   },
-  toolTipText: {
+  [`& .${classes.tooltipText}`]: {
     fontSize: 16,
     maxWidth: 350,
   },
@@ -76,7 +89,7 @@ const itemKeyFormatOptions = [
 ];
 
 const InputForm = () => {
-  const classes = useStyles();
+
   const [prefix, setPrefix] = useState('');
   const [variableRegex, setVariableRegex] = useState('');
   const [outputType, setOutputType] = useState('triton_placeholders');
@@ -92,7 +105,7 @@ const InputForm = () => {
   const isCustomPlaceholders = outputType === 'triton_placeholders_custom';
 
   return (
-    <form className={classes.root} noValidate autoComplete='off'>
+    <Root className={classes.root} noValidate autoComplete='off'>
       <TextField
         label='Prefix'
         value={prefix}
@@ -183,7 +196,7 @@ const InputForm = () => {
             <FormGroup>
               <div>
                 <Tooltip
-                  classes={{ tooltip: classes.toolTipText }}
+                  classes={{ tooltip: classes.tooltipText }}
                   title='An array is a data structure that holds a collection of items. When this
                       option is checked, the converter will preserve any list-like data, ignored arrays data are copied from the main language file.'
                 >
@@ -245,7 +258,7 @@ const InputForm = () => {
         levelDelimiter={levelDelimiter}
         files={files}
       />
-    </form>
+    </Root>
   );
 };
 
