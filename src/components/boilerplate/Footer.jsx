@@ -15,6 +15,7 @@ const Root = styled('div')((
 ) => ({
   [`&.${classes.root}`]: {
     marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(20),
   }
 }));
 
