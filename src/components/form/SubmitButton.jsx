@@ -8,6 +8,7 @@ import { downloadFiles, getAllFileContents } from '../../lib/files';
 const SubmitButton = ({
   prefix,
   variableRegex,
+  contentFormat,
   outputType,
   langSyntax,
   argsSyntax,
@@ -24,6 +25,7 @@ const SubmitButton = ({
     const result = handleConversion({
       prefix,
       variableRegex,
+      contentFormat,
       outputType,
       langSyntax,
       argsSyntax,
@@ -53,6 +55,7 @@ const SubmitButton = ({
 SubmitButton.propTypes = {
   prefix: PropTypes.string,
   variableRegex: PropTypes.string,
+  contentFormat: PropTypes.string,
   outputType: PropTypes.string,
   langSyntax: PropTypes.string,
   argsSyntax: PropTypes.string,
@@ -66,6 +69,7 @@ SubmitButton.propTypes = {
 SubmitButton.defaultProps = {
   prefix: '',
   variableRegex: '',
+  contentFormat: 'legacy',
   outputType: '',
   langSyntax: 'lang',
   argsSyntax: 'args',

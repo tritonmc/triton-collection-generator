@@ -5,6 +5,7 @@ class Converter {
   constructor({
     prefix,
     variableRegex,
+    contentFormat,
     outputType,
     langSyntax,
     argSyntax,
@@ -17,6 +18,7 @@ class Converter {
   }) {
     this.prefix = prefix;
     this.variableRegex = variableRegex;
+    this.contentFormat = contentFormat;
     this.outputType = outputType;
     this.langSyntax = langSyntax;
     this.argSyntax = argSyntax;
@@ -75,7 +77,7 @@ class Converter {
         key,
         type: 'text',
         languages: {
-          [language]: value,
+          [language]: this.handleTranslationTransforms(value),
         },
       });
     } else {
@@ -93,6 +95,17 @@ class Converter {
 
       default: // case 'preserve'
         return key;
+    }
+  }
+
+  handleTranslationTransforms(value) {
+    switch (this.contentFormat) {
+      case 'minimsg':
+        return `[minimsg]${value}`;
+      case 'json':
+        return `[triton_json]${value}`;
+      default: // case 'legacy'
+        return value;
     }
   }
 
@@ -124,6 +137,7 @@ const mapFiles = (files) => (fileName) => ({
 export const handleConversion = ({
   prefix = '',
   variableRegex,
+  contentFormat,
   outputType = 'triton_placeholders',
   langSyntax = 'lang',
   argsSyntax = 'args',
@@ -137,6 +151,7 @@ export const handleConversion = ({
   const converter = new Converter({
     prefix,
     variableRegex: variableRegex ? new RegExp(variableRegex, 'g') : /.^/g,
+    contentFormat,
     outputType,
     langSyntax,
     argsSyntax,

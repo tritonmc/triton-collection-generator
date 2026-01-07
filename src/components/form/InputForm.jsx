@@ -73,6 +73,21 @@ const outputTypeOptions = [
   },
 ];
 
+const contentFormatOptions = [
+  {
+    name: 'Legacy formatting (& or §)',
+    value: 'legacy',
+  },
+  {
+    name: 'MiniMessage',
+    value: 'minimsg',
+  },
+  {
+    name: 'JSON',
+    value: 'json',
+  },
+]
+
 const itemKeyFormatOptions = [
   {
     name: 'Preserve',
@@ -92,6 +107,7 @@ const InputForm = () => {
 
   const [prefix, setPrefix] = useState('');
   const [variableRegex, setVariableRegex] = useState('');
+  const [contentFormat, setContentFormat] = useState('legacy');
   const [outputType, setOutputType] = useState('triton_placeholders');
   const [ignoredKeys, setIgnoredKeys] = useState('');
   const [langSyntax, setLangSyntax] = useState('lang');
@@ -124,6 +140,12 @@ const InputForm = () => {
         fullWidth
         margin='normal'
         variant='outlined'
+      />
+      <Select
+        title='Input Content Format'
+        options={contentFormatOptions}
+        value={contentFormat}
+        onChange={handleFieldChange(setContentFormat)}
       />
       <Select
         title='Original Output Type'
@@ -248,6 +270,7 @@ const InputForm = () => {
       <SubmitButton
         prefix={prefix}
         variableRegex={variableRegex}
+        contentFormat={contentFormat}
         outputType={outputType}
         langSyntax={langSyntax}
         argsSyntax={argsSyntax}

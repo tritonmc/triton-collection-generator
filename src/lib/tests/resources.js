@@ -22,3 +22,7 @@ export const getInput = (files, extension) =>
     }),
     {}
   );
+
+export const findJsonOutput = (output, fileName) => {
+  return JSON.parse(output.find((file) => file.fileName === fileName)?.content);
+}
