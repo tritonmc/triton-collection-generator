@@ -36,7 +36,7 @@
     "properties-file": "^3.6.3",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "react-dropzone": "^14.3.8"
+    "react-dropzone": "^15.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.2",
