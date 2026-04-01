@@ -33,7 +33,7 @@
     "js-file-download": "^0.4.11",
     "js-yaml": "^4.1.1",
     "prop-types": "^15.8.1",
-    "properties-file": "^3.6.3",
+    "properties-file": "^4.0.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-dropzone": "^15.0.0"
