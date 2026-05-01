@@ -27,8 +27,8 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@mui/icons-material": "^7.3.6",
-    "@mui/material": "^7.3.6",
+    "@mui/icons-material": "^9.0.0",
+    "@mui/material": "^9.0.0",
     "formik": "^2.4.9",
     "js-file-download": "^0.4.11",
     "js-yaml": "^4.1.1",

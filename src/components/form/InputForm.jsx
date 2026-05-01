@@ -14,7 +14,7 @@ import {
 import {
   Add as AddIcon,
   ExpandMore as ExpandMoreIcon,
-  HelpOutline as HelpOutlineIcon,
+  HelpOutlineOutlined as HelpOutlineIcon,
 } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 import React, { useState } from 'react';
