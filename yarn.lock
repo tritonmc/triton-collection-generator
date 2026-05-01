@@ -960,10 +960,10 @@ prop-types@^15.6.2, prop-types@^15.8.1:
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
-properties-file@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/properties-file/-/properties-file-4.0.0.tgz#91cf15ee001083da2425b5833961a085d4ac378a"
-  integrity sha512-VWnuWVVQIeYPdJwWfBVu6/SQExpAliGkY8Bq58pHHPJHgD4THXlJfsc+qC41+62iV4WNwQhmrxbqpEXIvIMOmw==
+properties-file@^5.0.0:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/properties-file/-/properties-file-5.0.4.tgz#ffd9c5fe1e96c20601b485c84818f6bc2d39e7e3"
+  integrity sha512-c3CqZLWoNN+zQvpn4z8GgVdBGWlSzbjPumDk1Yri2bdbw7CMzaOgoPsj271kJzNwznEtt4tIDByhZjrw1LzKBw==
 
 react-dom@^19.2.3:
   version "19.2.5"
