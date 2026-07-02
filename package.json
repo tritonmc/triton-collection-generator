@@ -31,7 +31,7 @@
     "@mui/material": "^9.0.0",
     "formik": "^2.4.9",
     "js-file-download": "^0.4.11",
-    "js-yaml": "^4.1.1",
+    "js-yaml": "^5.0.0",
     "prop-types": "^15.8.1",
     "properties-file": "^5.0.0",
     "react": "^19.2.3",
