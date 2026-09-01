@@ -4,6 +4,7 @@
   "author": "Diogo Correia",
   "license": "MIT",
   "private": false,
+  "type": "module",
   "description": "Generates collection files for Triton based on other plugin's config",
   "repository": "https://github.com/diogotcorreia/triton-collection-generator",
   "scripts": {
